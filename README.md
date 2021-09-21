@@ -1,1 +1,28 @@
 # espn-fantasy-football-analyzer
+
+Purpose is to create a weekly "awards" of an ESPN league I have with some friends.
+
+Some ideas of weekly awards to generate (roughly in order of easiest to hardest):
+- Highest Scorer
+- Lowest Scorer
+- Biggest Blowout
+- Smallest victory
+- SNF/MNF Victory
+- Best Manager (Highest % points starting vs bench)
+- Worst Manager (Highest % points on bench vs starting)
+- Overachiever (highest over projection)
+- Underachiever (most below projection)
+- Starting Positions of the week (QB/RB/WR/TE/DEF)
+- Bench Positions of the week (QB/RB/WR/TE/DEF)
+- Worst decision of the week
+
+API Examples:
+- Individual matchups - https://fantasy.espn.com/apis/v3/games/ffl/seasons/2021/segments/0/leagues/902814?view=mBoxscore&view=mMatchupScore&view=mRoster&view=mSettings&view=mStatus&view=mTeam&view=modular&view=mNav
+
+Need:
+- Parse schedule
+- Parse individual box scores
+- Compare against box scores of ^
+
+Notes:
+- "Slots" to determine starter, can use React Components extension to see which slot is which
