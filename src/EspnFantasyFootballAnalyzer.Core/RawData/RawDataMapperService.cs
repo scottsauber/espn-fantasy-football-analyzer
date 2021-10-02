@@ -6,24 +6,43 @@ using EspnFantasyFootballAnalyzer.Core.RawParser;
 
 namespace EspnFantasyFootballAnalyzer.Core.RawData
 {
-    public class RawDataMapperService
+    public interface IRawDataMapperService
     {
-        public FantasyMatchup Map(Schedule schedule)
+        FantasyWeekScoreboard Map(Root root);
+    }
+
+    public class RawDataMapperService : IRawDataMapperService
+    {
+        public FantasyWeekScoreboard Map(Root root)
         {
             // Home and Away team are super close but not quite due to the structure coming back, but sharing as much code as I can relative to the amount of time I want to spend on this project
-            return new FantasyMatchup
+            return new FantasyWeekScoreboard
             {
-                WeekNumber = schedule.MatchupPeriodId,
-                HomeTeam = new FantasyTeamWeekResult
+                WeekNumber = root.ScoringPeriodId,
+                FantasyMatchups = root.Schedule.Select(x => new FantasyMatchup
                 {
-                    StarterStats = MapStarters(schedule.Home.RosterForMatchupPeriod),
-                    BenchStats = MapBenchWarmers(schedule.Home.RosterForMatchupPeriod),
-                },
-                AwayTeam = new FantasyTeamWeekResult
-                {
-                    StarterStats = MapStarters(schedule.Away.RosterForMatchupPeriod),
-                    BenchStats = MapBenchWarmers(schedule.Away.RosterForMatchupPeriod),
-                }
+                    HomeTeam = new FantasyTeamWeekResult
+                    {
+                        StarterStats = MapStarters(x.Home.RosterForMatchupPeriod),
+                        BenchStats = MapBenchWarmers(x.Home.RosterForMatchupPeriod),
+                        FantasyTeam = MapFantasyTeam(root.Teams.Single(t => t.Id == x.Home.TeamId)),
+                    },
+                    AwayTeam = new FantasyTeamWeekResult
+                    {
+                        StarterStats = MapStarters(x.Away.RosterForMatchupPeriod),
+                        BenchStats = MapBenchWarmers(x.Away.RosterForMatchupPeriod),
+                        FantasyTeam = MapFantasyTeam(root.Teams.Single(t => t.Id == x.Away.TeamId)),
+                    }
+                }).ToList(),
+            };
+        }
+
+        private FantasyTeam MapFantasyTeam(Team team)
+        {
+            return new FantasyTeam
+            {
+                Id = team.Id,
+                TeamName = $"{team.Location} {team.Nickname}",
             };
         }
 
