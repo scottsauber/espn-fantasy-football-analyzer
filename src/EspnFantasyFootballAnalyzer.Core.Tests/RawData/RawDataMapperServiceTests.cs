@@ -25,11 +25,11 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
         [Fact]
         public void ShouldMapMatchupPeriodToWeekNumber()
         {
-            _fixture.Customizations.Add(new RandomNumericSequenceGenerator(1, 17));
             var root = CreateRoot();
+            
             var result = _rawDataMapperService.Map(root);
 
-            result.WeekNumber.Should().Be(root.ScoringPeriodId);
+            result.FantasyMatchups.Single().WeekNumber.Should().Be(root.Schedule.First().MatchupPeriodId);
         }
 
         [Fact]
@@ -155,7 +155,18 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
             benchStats.FantasyPlayer.Position.Should().Be(FantasyPosition.Quarterback);
         }
 
+        [Fact]
+        public void ShouldNotMapUndecidedGames()
+        {
+            var root = CreateRoot();
+            var undecidedGame = root.Schedule.First();
+            undecidedGame.Winner = RawDataMapperService.UndecidedWinner;
         
+            var result = _rawDataMapperService.Map(root);
+
+            result.FantasyMatchups.Should().NotContain(x => x.HomeTeam.FantasyTeam.Id == undecidedGame.Home.TeamId);
+        }
+
         private Root CreateRoot(LineupSlot lineupSlot = LineupSlot.Bench)
         {
             var root = _fixture.Create<Root>();
