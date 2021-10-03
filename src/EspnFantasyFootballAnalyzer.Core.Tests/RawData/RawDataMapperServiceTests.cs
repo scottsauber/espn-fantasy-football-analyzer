@@ -26,8 +26,8 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
         public void ShouldMapMatchupPeriodToWeekNumber()
         {
             var root = CreateRoot();
-            
-            var result = _rawDataMapperService.Map(root);
+
+            var result = _rawDataMapperService.Map(root, 1);
 
             result.FantasyMatchups.Single().WeekNumber.Should().Be(root.Schedule.First().MatchupPeriodId);
         }
@@ -35,7 +35,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
         [Fact]
         public void ShouldMapHomeAndAwayTeams()
         {
-            var root = _fixture.Create<Root>();
+            var root = CreateRoot();
             // Have to map Teams and Schedule Teams to marry up Id's
             root.Teams.Clear();
             root.Schedule = new List<Schedule>{root.Schedule.First()};
@@ -50,7 +50,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
             root.Teams.Add(awayTeam);
             root.Schedule[0].Away.TeamId = awayTeam.Id;
         
-            var result = _rawDataMapperService.Map(root);
+            var result = _rawDataMapperService.Map(root, 1);
 
             var fantasyMatchup = result.FantasyMatchups.Single();
             fantasyMatchup.HomeTeam.FantasyTeam.Id.Should().Be(homeTeam.Id);
@@ -76,7 +76,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
             entries.Add(CreateEntriesForTeam(expectedStarterScore, LineupSlot.Bench, player));
             root.Schedule.Single().Home.RosterForMatchupPeriod.Entries = entries;
         
-            var result = _rawDataMapperService.Map(root);
+            var result = _rawDataMapperService.Map(root, 1);
         
             result.FantasyMatchups.Single().HomeTeam.TotalStarterScore.Should().Be(expectedStarterScore);
         }
@@ -98,7 +98,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
             entries.Add(CreateEntriesForTeam(expectedStarterScore, LineupSlot.Bench, player));
             root.Schedule.Single().Away.RosterForMatchupPeriod.Entries = entries;
         
-            var result = _rawDataMapperService.Map(root);
+            var result = _rawDataMapperService.Map(root, 1);
         
             result.FantasyMatchups.Single().AwayTeam.TotalStarterScore.Should().Be(expectedStarterScore);
         }
@@ -121,8 +121,8 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
                 CreateEntriesForTeam(expectedStarterScore, lineupSlot, player),
             };
             root.Schedule.Single().Home.RosterForMatchupPeriod.Entries = entries;
-        
-            var result = _rawDataMapperService.Map(root);
+
+            var result = _rawDataMapperService.Map(root, 1);
         
             var starterStats = result.FantasyMatchups.Single().HomeTeam.StarterStats.Single();
             starterStats.Score.Should().Be(expectedStarterScore);
@@ -145,7 +145,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
             };
             root.Schedule.Single().Home.RosterForMatchupPeriod.Entries = entries;
         
-            var result = _rawDataMapperService.Map(root);
+            var result = _rawDataMapperService.Map(root, 1);
         
             var benchStats = result.FantasyMatchups.Single().HomeTeam.BenchStats.Single();
             benchStats.Score.Should().Be(expectedStarterScore);
@@ -162,9 +162,22 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
             var undecidedGame = root.Schedule.First();
             undecidedGame.Winner = RawDataMapperService.UndecidedWinner;
         
-            var result = _rawDataMapperService.Map(root);
+            var result = _rawDataMapperService.Map(root, 1);
 
             result.FantasyMatchups.Should().NotContain(x => x.HomeTeam.FantasyTeam.Id == undecidedGame.Home.TeamId);
+        }
+        
+        [Fact]
+        public void ShouldNotMapGamesForOtherWeeks()
+        {
+            var root = CreateRoot();
+            var weekNumber = _fixture.Create<int>();
+            var differentWeekNumber = weekNumber + 1;
+            root.Schedule.First().MatchupPeriodId = differentWeekNumber;
+        
+            var result = _rawDataMapperService.Map(root, weekNumber);
+
+            result.FantasyMatchups.Should().NotContain(x => x.WeekNumber == differentWeekNumber);
         }
 
         private Root CreateRoot(LineupSlot lineupSlot = LineupSlot.Bench)
@@ -178,6 +191,12 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.RawData
             var awayTeam = _fixture.Create<Team>();
             root.Teams.Add(awayTeam);
             root.Schedule[0].Away.TeamId = awayTeam.Id;
+
+            foreach (var schedule in root.Schedule)
+            {
+                schedule.MatchupPeriodId = 1;
+            }
+            
             return root;
         }
         

@@ -1,23 +1,25 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using EspnFantasyFootballAnalyzer.Core.Models;
 
 namespace EspnFantasyFootballAnalyzer.Core.Awards
 {
     public class MostPointsAward : IAward
     {
-        public string AwardName => "Most Points";
-        public string AwardId { get; }
-
-        public AwardWinner AssignAwardToWinner(FantasyWeekScoreboard weekScoreboard)
+        public AwardWinner AssignAwardToWinner(List<FantasyMatchup> fantasyMatchups, int weekNumber)
         {
+            var winningTeamResult = fantasyMatchups
+                .Select(x => x.Winner)
+                .OrderByDescending(x => x.TotalStarterScore)
+                .First();
+            var winningFantasyTeam = winningTeamResult
+                .FantasyTeam;
             return new AwardWinner
             {
-                WeekNumber = weekScoreboard.WeekNumber,
-                FantasyTeam = weekScoreboard.FantasyMatchups
-                    .Select(x => x.Winner)
-                    .OrderByDescending(x => x.TotalStarterScore)
-                    .First()
-                    .FantasyTeam,
+                AwardId = AwardIds.MostPointsAward,
+                AwardText = $"Most Points Scored by {winningFantasyTeam.TeamName} with {winningTeamResult.TotalStarterScore} points.",
+                WeekNumber = weekNumber,
+                FantasyTeam = winningFantasyTeam,
             };
         }
     }

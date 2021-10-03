@@ -20,18 +20,20 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public void ShouldReturnTeamWithTheMostPoints()
         {
-            var fantasyScoreboard = _fixture.Create<FantasyWeekScoreboard>();
-            fantasyScoreboard.FantasyMatchups.Clear();
+            var fantasyMatchups = new List<FantasyMatchup>();
             var winningTeamScore = 100;
-            fantasyScoreboard.FantasyMatchups.Add(CreateMatchupWithScores(winningTeamScore, 50));
-            fantasyScoreboard.FantasyMatchups.Add(CreateMatchupWithScores(90, 40));
-            fantasyScoreboard.FantasyMatchups.Add(CreateMatchupWithScores(20, 10));
+            fantasyMatchups.Add(CreateMatchupWithScores(winningTeamScore, 50));
+            fantasyMatchups.Add(CreateMatchupWithScores(90, 40));
+            fantasyMatchups.Add(CreateMatchupWithScores(20, 10));
+            var weekNumber = 11;
             var mostPointsAward = new MostPointsAward();
 
-            var result = mostPointsAward.AssignAwardToWinner(fantasyScoreboard);
+            var result = mostPointsAward.AssignAwardToWinner(fantasyMatchups, weekNumber);
 
-            result.WeekNumber.Should().Be(fantasyScoreboard.WeekNumber);
-            var winningFantasyTeam = fantasyScoreboard.FantasyMatchups.Single(x => x.Winner.TotalStarterScore == winningTeamScore).Winner.FantasyTeam;
+            result.WeekNumber.Should().Be(weekNumber);
+            result.AwardId.Should().Be(AwardIds.MostPointsAward);
+            var winningFantasyTeam = fantasyMatchups.Single(x => x.Winner.TotalStarterScore == winningTeamScore).Winner.FantasyTeam;
+            result.AwardText.Should().Be($"Most Points Scored by {winningFantasyTeam.TeamName} with {winningTeamScore} points.");
             result.FantasyTeam.Should().Be(winningFantasyTeam);
         }
 

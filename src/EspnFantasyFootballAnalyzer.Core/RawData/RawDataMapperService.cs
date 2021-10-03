@@ -8,18 +8,18 @@ namespace EspnFantasyFootballAnalyzer.Core.RawData
 {
     public interface IRawDataMapperService
     {
-        FantasyWeekScoreboard Map(Root root);
+        FantasyWeekScoreboard Map(Root root, int weekNumber);
     }
 
     public class RawDataMapperService : IRawDataMapperService
     {
         public static readonly string UndecidedWinner = "UNDECIDED";
 
-        public FantasyWeekScoreboard Map(Root root)
+        public FantasyWeekScoreboard Map(Root root, int weekNumber)
         {
             // Home and Away team are super close but not quite due to the structure coming back, but sharing as much code as I can relative to the amount of time I want to spend on this project
             var finalizedGames = root.Schedule
-                .Where(x => x.Winner != UndecidedWinner)
+                .Where(x => x.Winner != UndecidedWinner && x.MatchupPeriodId == weekNumber)
                 .ToList();
             return new FantasyWeekScoreboard
             {
