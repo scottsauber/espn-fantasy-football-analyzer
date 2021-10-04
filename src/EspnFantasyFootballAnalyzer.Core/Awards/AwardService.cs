@@ -3,8 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using EspnFantasyFootballAnalyzer.Core.RawData;
-using EspnFantasyFootballAnalyzer.Core.RawParser;
+using EspnFantasyFootballAnalyzer.Core.EspnData;
 
 namespace EspnFantasyFootballAnalyzer.Core.Awards
 {
@@ -15,12 +14,12 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
 
     public class AwardService : IAwardService
     {
-        private readonly IRawDataMapperService _rawDataMapperService;
+        private readonly IEspnDataMapperService _espnDataMapperService;
         private readonly HttpClient _httpClient;
 
-        public AwardService(IRawDataMapperService rawDataMapperService, HttpClient httpClient)
+        public AwardService(IEspnDataMapperService espnDataMapperService, HttpClient httpClient)
         {
-            _rawDataMapperService = rawDataMapperService;
+            _espnDataMapperService = espnDataMapperService;
             _httpClient = httpClient;
         }
         
@@ -36,7 +35,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             var requestUri = $"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/902814?scoringPeriodId={weekNumber}&view=modular&view=mScoreboard";
             var root = await _httpClient.GetFromJsonAsync<Root>(requestUri);
 
-            var fantasyMatchups = _rawDataMapperService.Map(root, weekNumber)
+            var fantasyMatchups = _espnDataMapperService.Map(root, weekNumber)
                 .FantasyMatchups
                 .Where(x => x.WeekNumber == weekNumber)
                 .ToList();

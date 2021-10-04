@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using EspnFantasyFootballAnalyzer.Core.Awards;
-using EspnFantasyFootballAnalyzer.Core.RawData;
+using EspnFantasyFootballAnalyzer.Core.EspnData;
 using FluentAssertions;
 using Moq;
 using Moq.Protected;
@@ -33,7 +33,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectMostPointsScoredTeam()
         {
-            var awardService = new AwardService(new RawDataMapperService(), _httpClient);
+            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
 
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
@@ -44,7 +44,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectLeastPointsScoreTeam()
         {
-            var awardService = new AwardService(new RawDataMapperService(), _httpClient);
+            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
 
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
@@ -55,7 +55,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectBlowoutTeam()
         {
-            var awardService = new AwardService(new RawDataMapperService(), _httpClient);
+            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
 
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 

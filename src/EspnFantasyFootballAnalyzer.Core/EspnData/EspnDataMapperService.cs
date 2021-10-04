@@ -2,16 +2,15 @@
 using System.Linq;
 using EspnFantasyFootballAnalyzer.Core.Enums;
 using EspnFantasyFootballAnalyzer.Core.Models;
-using EspnFantasyFootballAnalyzer.Core.RawParser;
 
-namespace EspnFantasyFootballAnalyzer.Core.RawData
+namespace EspnFantasyFootballAnalyzer.Core.EspnData
 {
-    public interface IRawDataMapperService
+    public interface IEspnDataMapperService
     {
         FantasyWeekScoreboard Map(Root root, int weekNumber);
     }
 
-    public class RawDataMapperService : IRawDataMapperService
+    public class EspnDataMapperService : IEspnDataMapperService
     {
         public static readonly string UndecidedWinner = "UNDECIDED";
 
