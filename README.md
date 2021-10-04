@@ -3,10 +3,10 @@
 Purpose is to create a weekly "awards" of an ESPN league I have with some friends.
 
 Some ideas of weekly awards to generate (roughly in order of easiest to hardest):
-- Highest Scorer
-- Lowest Scorer
-- Biggest Blowout
-- Smallest victory
+- Highest Scorer ✔️
+- Lowest Scorer ✔️
+- Biggest Blowout ✔️
+- Smallest victory ✔️
 - SNF/MNF Victory
 - Best Manager (Highest % points starting vs bench)
 - Worst Manager (Highest % points on bench vs starting)
