@@ -29,6 +29,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             var awards = new List<IAward>
             {
                 new MostPointsAward(),
+                new LeastPointsAward(),
             };
 
             var requestUri = $"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/902814?scoringPeriodId={weekNumber}&view=modular&view=mScoreboard";
