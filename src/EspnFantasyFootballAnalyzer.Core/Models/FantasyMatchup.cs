@@ -28,5 +28,6 @@ namespace EspnFantasyFootballAnalyzer.Core.Models
         }
 
         public FantasyTeamWeekResult Loser => Winner == HomeTeam ? AwayTeam : HomeTeam;
+        public decimal PointDifferential => Winner.TotalStarterScore - Loser.TotalStarterScore;
     }
 }

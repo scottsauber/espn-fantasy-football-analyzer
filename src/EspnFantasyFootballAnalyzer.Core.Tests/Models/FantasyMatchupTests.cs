@@ -58,6 +58,14 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
             FluentActions.Invoking(() => fantasyMatchup.Winner).Should().Throw<ArgumentOutOfRangeException>();
         }
 
+        [Fact]
+        public void PointDifferentialShouldBeWinningScoreMinusLosingScore()
+        {
+            var fantasyMatchup = CreateFantasyMatchup(100, 40);
+
+            fantasyMatchup.PointDifferential.Should().Be(60);
+        }
+
         private FantasyMatchup CreateFantasyMatchup(int homeTeamStarterScore, int awayTeamStarterScore, int homeTeamBenchScore = 0, int awayTeamBenchScore = 0)
         {
             var fantasyMatchup = _fixture.Create<FantasyMatchup>();
