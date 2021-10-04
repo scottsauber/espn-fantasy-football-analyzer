@@ -16,7 +16,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
         }
         
         [Fact]
-        public void ShouldReturnWinnerBasedOnMostPoints()
+        public void WinnerShouldReturnHomeTeamWhenHomeTeamHasMostStarterPoints()
         {
             var fantasyMatchup = CreateFantasyMatchup(100, 10);
 
@@ -24,7 +24,15 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
         }
         
         [Fact]
-        public void ShouldReturnWinnerBasedOnMostBenchPointsWhenStarterScoreMatches()
+        public void LoserShouldReturnAwayTeamWhenHomeTeamHasMostStarterPoints()
+        {
+            var fantasyMatchup = CreateFantasyMatchup(100, 10);
+
+            fantasyMatchup.Loser.Should().Be(fantasyMatchup.AwayTeam);
+        }
+        
+        [Fact]
+        public void WinnerShouldReturnHomeTeamWhenHomeAndAwayTeamHaveTiedStarterPointsButHomeTeamHasMoreBenchPoints()
         {
             var starterScore = 100;
             var fantasyMatchup = CreateFantasyMatchup(starterScore, starterScore, 100, 10);
@@ -33,7 +41,16 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
         }
         
         [Fact]
-        public void ShouldThrowExceptionWhenStarterPointsAndBenchPointsMatch()
+        public void LoserShouldReturnAwayTeamWhenHomeAndAwayTeamHaveTiedStarterPointsButHomeTeamHasMoreBenchPoints()
+        {
+            var starterScore = 100;
+            var fantasyMatchup = CreateFantasyMatchup(starterScore, starterScore, 100, 10);
+
+            fantasyMatchup.Loser.Should().Be(fantasyMatchup.AwayTeam);
+        }
+
+        [Fact]
+        public void WinnerShouldThrowExceptionWhenStarterPointsAndBenchPointsMatchForHomeAndAwayTeam()
         {
             var matchingScore = 100;
             var fantasyMatchup = CreateFantasyMatchup(matchingScore, matchingScore, matchingScore, matchingScore);

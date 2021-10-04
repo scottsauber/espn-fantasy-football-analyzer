@@ -1,4 +1,5 @@
 ﻿using System;
+using EspnFantasyFootballAnalyzer.Core.RawParser;
 
 namespace EspnFantasyFootballAnalyzer.Core.Models
 {
@@ -26,5 +27,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Models
                 return HomeTeam.TotalBenchScore > AwayTeam.TotalBenchScore ? HomeTeam : AwayTeam;
             }
         }
+
+        public FantasyTeamWeekResult Loser => Winner == HomeTeam ? AwayTeam : HomeTeam;
     }
 }
