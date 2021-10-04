@@ -1,5 +1,4 @@
 ﻿using System;
-using EspnFantasyFootballAnalyzer.Core.RawParser;
 
 namespace EspnFantasyFootballAnalyzer.Core.Models
 {
