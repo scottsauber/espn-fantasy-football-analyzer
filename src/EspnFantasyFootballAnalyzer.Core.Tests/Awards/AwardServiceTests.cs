@@ -51,5 +51,16 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var mostPointsAward = awardWinners.Single(x => x.AwardId == AwardIds.LeastPointsAward);
             mostPointsAward.AwardText.Should().Be("Least Points Scored by Team X-Bladz with 61.42 points.");
         }
+        
+        [Fact]
+        public async Task ShouldReturnCorrectBlowoutTeam()
+        {
+            var awardService = new AwardService(new RawDataMapperService(), _httpClient);
+
+            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+
+            var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.BiggestBlowoutAward);
+            biggestBlowoutAward.AwardText.Should().Be($"Biggest Blowout Award goes to Azeroth High Warlord for beating Team X-Bladz by 49.00 points.");
+        }
     }
 }
