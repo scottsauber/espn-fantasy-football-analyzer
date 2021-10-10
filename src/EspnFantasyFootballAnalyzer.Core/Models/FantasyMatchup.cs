@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EspnFantasyFootballAnalyzer.Core.Models
 {
@@ -7,6 +8,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Models
         public int WeekNumber { get; set; }
         public FantasyTeamWeekResult HomeTeam { get; init; }
         public FantasyTeamWeekResult AwayTeam { get; init; }
+        public List<FantasyTeamWeekResult> BothTeams => new() {HomeTeam, AwayTeam};
 
         public FantasyTeamWeekResult Winner
         {

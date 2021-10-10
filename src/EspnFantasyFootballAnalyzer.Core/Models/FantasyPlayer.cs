@@ -6,5 +6,6 @@
         public string FirstName { get; init; }
         public string LastName { get; init; }
         public FantasyPosition Position { get; init; }
+        public string FullName => $"{FirstName} {LastName}";
     }
 }

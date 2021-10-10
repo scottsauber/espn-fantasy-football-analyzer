@@ -9,8 +9,8 @@ namespace EspnFantasyFootballAnalyzer.Core.Models
     {
         public decimal TotalStarterScore => StarterStats.Sum(s => s.Score).TruncateAfterTwoDecimalPlaces();
         public decimal TotalBenchScore => BenchStats.Sum(s => s.Score).TruncateAfterTwoDecimalPlaces();
-        public List<FantasyPlayerWeekStats> StarterStats { get; init; } = new();
-        public List<FantasyPlayerWeekStats> BenchStats { get; init; } = new();
+        public List<FantasyPlayerWeekStats> StarterStats { get; set; } = new();
+        public List<FantasyPlayerWeekStats> BenchStats { get; set; } = new();
         public FantasyTeam FantasyTeam { get; set; }
     }
 }

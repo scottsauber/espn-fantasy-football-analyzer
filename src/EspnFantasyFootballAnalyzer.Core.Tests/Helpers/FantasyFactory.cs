@@ -6,24 +6,38 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Helpers
 {
     public static class FantasyFactory
     {
-        public static FantasyMatchup CreateMatchupWithScores(int homeTeamScore, int awayTeamScore)
+        public static FantasyMatchup CreateMatchupWithScores(int homeTeamScore, int awayTeamScore, FantasyTeam homeTeam = null, FantasyPlayer homeTeamPlayer = null)
         {
             return new FantasyMatchup
             {
-                HomeTeam = CreateTeamResultWithScore(homeTeamScore),
-                AwayTeam = CreateTeamResultWithScore(awayTeamScore),
+                HomeTeam = CreateTeamResult(homeTeamScore, homeTeam, homeTeamPlayer),
+                AwayTeam = CreateTeamResult(awayTeamScore),
             };
         }
 
-        public static FantasyTeamWeekResult CreateTeamResultWithScore(int score)
+        public static FantasyPlayer CreatePlayerWithPosition(FantasyPosition position)
         {
+            var fixture = new Fixture();
+
+            var player = fixture.Create<FantasyPlayer>();
+
+            return player with
+            {
+                Position = position,
+            };
+        }
+
+        public static FantasyTeamWeekResult CreateTeamResult(int score, FantasyTeam fantasyTeam = null, FantasyPlayer fantasyPlayer = null)
+        {
+            var fixture = new Fixture();
             return new FantasyTeamWeekResult
             {
-                FantasyTeam = new Fixture().Create<FantasyTeam>(),
+                FantasyTeam = fantasyTeam ?? fixture.Create<FantasyTeam>(),
                 StarterStats = new List<FantasyPlayerWeekStats>
                 {
                     new FantasyPlayerWeekStats
                     {
+                        FantasyPlayer = fantasyPlayer ?? fixture.Create<FantasyPlayer>(),
                         Score = score,
                     }
                 }
