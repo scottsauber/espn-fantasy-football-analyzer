@@ -20,9 +20,8 @@ namespace EspnFantasyFootballAnalyzer.Core.EspnData
             var finalizedGames = root.Schedule
                 .Where(x => x.Winner != UndecidedWinner && x.MatchupPeriodId == weekNumber)
                 .ToList();
-            return new FantasyWeekScoreboard
-            {
-                FantasyMatchups = finalizedGames
+            return new FantasyWeekScoreboard(
+        finalizedGames
                     .Select(x => new FantasyMatchup
                     {
                         WeekNumber = x.MatchupPeriodId,
@@ -38,8 +37,7 @@ namespace EspnFantasyFootballAnalyzer.Core.EspnData
                             BenchStats = MapBenchWarmers(x.Away.RosterForMatchupPeriod),
                             FantasyTeam = MapFantasyTeam(root.Teams.Single(t => t.Id == x.Away.TeamId)),
                         }
-                    }).ToList(),
-            };
+                    }).ToList());
         }
 
         private FantasyTeam MapFantasyTeam(Team team)

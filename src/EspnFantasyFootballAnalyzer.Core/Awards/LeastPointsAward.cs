@@ -6,9 +6,10 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
 {
     public class LeastPointsAward : IAward
     {
-        public AwardWinner AssignAwardToWinner(List<FantasyMatchup> fantasyMatchups, int weekNumber)
+        public AwardWinner AssignAwardToWinner(FantasyWeekScoreboard fantasyWeekScoreboard)
         {
-            var losingTeamResult = fantasyMatchups
+            var losingTeamResult = fantasyWeekScoreboard
+                .FantasyMatchups
                 .Select(x => x.Loser)
                 .OrderBy(x => x.TotalStarterScore)
                 .First();
@@ -19,7 +20,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             {
                 AwardId = AwardIds.LeastPointsAward,
                 AwardText = $"Least Points Scored by {losingFantasyTeam.TeamName} with {losingTeamResult.TotalStarterScore} points.",
-                WeekNumber = weekNumber,
+                WeekNumber = fantasyWeekScoreboard.WeekNumber,
                 FantasyTeam = losingFantasyTeam,
             };
         }

@@ -18,10 +18,11 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(90, 30));
             var winnerScoreOfSmallestMargin = 20;
             fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(winnerScoreOfSmallestMargin, 10));
+            var scoreboard = new FantasyWeekScoreboard(fantasyMatchups);
             var weekNumber = 11;
             var smallestMarginOfVictoryAward = new SmallestMarginOfVictoryAward();
 
-            var result = smallestMarginOfVictoryAward.AssignAwardToWinner(fantasyMatchups, weekNumber);
+            var result = smallestMarginOfVictoryAward.AssignAwardToWinner(scoreboard);
 
             result.WeekNumber.Should().Be(weekNumber);
             result.AwardId.Should().Be(AwardIds.SmallestMarginOfVictoryAward);

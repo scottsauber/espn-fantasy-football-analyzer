@@ -10,6 +10,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Helpers
         {
             return new FantasyMatchup
             {
+                WeekNumber = 11,
                 HomeTeam = CreateTeamResult(homeTeamScore, homeTeam, homeTeamPlayer),
                 AwayTeam = CreateTeamResult(awayTeamScore),
             };

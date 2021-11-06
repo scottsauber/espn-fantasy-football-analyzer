@@ -6,9 +6,10 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
 {
     public class BiggestBlowoutAward : IAward
     {
-        public AwardWinner AssignAwardToWinner(List<FantasyMatchup> fantasyMatchups, int weekNumber)
+        public AwardWinner AssignAwardToWinner(FantasyWeekScoreboard fantasyWeekScoreboard)
         {
-            var biggestBlowout = fantasyMatchups
+            var biggestBlowout = fantasyWeekScoreboard
+                .FantasyMatchups
                 .OrderByDescending(x => x.PointDifferential)
                 .First();
             
@@ -17,7 +18,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 AwardId = AwardIds.BiggestBlowoutAward,
                 AwardText = $"Biggest Blowout Award goes to {biggestBlowout.Winner.FantasyTeam.TeamName} for beating {biggestBlowout.Loser.FantasyTeam.TeamName} by {biggestBlowout.PointDifferential} points.",
                 FantasyTeam = biggestBlowout.Winner.FantasyTeam,
-                WeekNumber = weekNumber,
+                WeekNumber = fantasyWeekScoreboard.WeekNumber,
             };
         }
     }

@@ -6,9 +6,10 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
 {
     public class MostPointsAward : IAward
     {
-        public AwardWinner AssignAwardToWinner(List<FantasyMatchup> fantasyMatchups, int weekNumber)
+        public AwardWinner AssignAwardToWinner(FantasyWeekScoreboard fantasyWeekScoreboard)
         {
-            var winningTeamResult = fantasyMatchups
+            var winningTeamResult = fantasyWeekScoreboard
+                .FantasyMatchups
                 .Select(x => x.Winner)
                 .OrderByDescending(x => x.TotalStarterScore)
                 .First();
@@ -19,7 +20,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             {
                 AwardId = AwardIds.MostPointsAward,
                 AwardText = $"Most Points Scored by {winningFantasyTeam.TeamName} with {winningTeamResult.TotalStarterScore} points.",
-                WeekNumber = weekNumber,
+                WeekNumber = fantasyWeekScoreboard.WeekNumber,
                 FantasyTeam = winningFantasyTeam,
             };
         }

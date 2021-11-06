@@ -28,22 +28,13 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var matchupWithHighQbScore = FantasyFactory.CreateMatchupWithScores(winningQbScore, 19, winningTeam, quarterbackPlayerWithHighScore);
             matchupWithHighQbScore.HomeTeam.BenchStats = CreateBenchQbWithHigherScore(winningQbScore);
             fantasyMatchups.Add(matchupWithHighQbScore);
-            var quarterbackPlayerWithLowScore = FantasyFactory.CreatePlayerWithPosition(FantasyPosition.Quarterback);
-            var matchupWithHighIndividualPlayerScore = FantasyFactory.CreateMatchupWithScores(19, 19, _fixture.Create<FantasyTeam>(), quarterbackPlayerWithLowScore);
-            matchupWithHighIndividualPlayerScore.HomeTeam.StarterStats.Add(new FantasyPlayerWeekStats
-            {
-                Score = winningQbScore + 15,
-                FantasyPlayer = new FantasyPlayer
-                {
-                    Position = FantasyPosition.RunningBack,
-                }
-            });
-            fantasyMatchups.Add(matchupWithHighIndividualPlayerScore);
-            
+            var otherMatchup = CreateMatchupWithLowerQuarterbackScoreAndHigherRunningBackScore(winningQbScore);
+            fantasyMatchups.Add(otherMatchup);
+            var scoreboard = new FantasyWeekScoreboard(fantasyMatchups);
             var weekNumber = 11;
             var mostPointsByAQbStarterAward = new MostPointsByAQbStarterAward();
 
-            var result = mostPointsByAQbStarterAward.AssignAwardToWinner(fantasyMatchups, weekNumber);
+            var result = mostPointsByAQbStarterAward.AssignAwardToWinner(scoreboard);
 
             result.WeekNumber.Should().Be(weekNumber);
             result.AwardId.Should().Be(AwardIds.MostPointsByAQbStarterAward);
@@ -53,6 +44,22 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
                 .Single(x => x.FantasyPlayer.Id == quarterbackPlayerWithHighScore.Id);
             result.AwardText.Should().Be($"Most Points By A QB Starter {winningQb.FantasyPlayer.FullName} with 20 points from team {winningTeam.TeamName}.");
             result.FantasyTeam.Should().Be(winningTeam);
+        }
+
+        private FantasyMatchup CreateMatchupWithLowerQuarterbackScoreAndHigherRunningBackScore(int winningQbScore)
+        {
+            var quarterbackPlayerWithLowScore = FantasyFactory.CreatePlayerWithPosition(FantasyPosition.Quarterback);
+            var matchupWithHighIndividualPlayerScore =
+                FantasyFactory.CreateMatchupWithScores(winningQbScore - 1, winningQbScore - 1, _fixture.Create<FantasyTeam>(), quarterbackPlayerWithLowScore);
+            matchupWithHighIndividualPlayerScore.HomeTeam.StarterStats.Add(new FantasyPlayerWeekStats
+            {
+                Score = winningQbScore + 15,
+                FantasyPlayer = new FantasyPlayer
+                {
+                    Position = FantasyPosition.RunningBack,
+                }
+            });
+            return matchupWithHighIndividualPlayerScore;
         }
 
         private List<FantasyPlayerWeekStats> CreateBenchQbWithHigherScore(int winningQbScore)

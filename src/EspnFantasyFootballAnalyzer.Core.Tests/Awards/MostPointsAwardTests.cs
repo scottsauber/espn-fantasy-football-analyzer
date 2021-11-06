@@ -17,13 +17,12 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var winningTeamScore = 100;
             fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(winningTeamScore, 50));
             fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(90, 40));
-            fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(20, 10));
-            var weekNumber = 11;
+            var scoreboard = new FantasyWeekScoreboard(fantasyMatchups);
             var mostPointsAward = new MostPointsAward();
 
-            var result = mostPointsAward.AssignAwardToWinner(fantasyMatchups, weekNumber);
+            var result = mostPointsAward.AssignAwardToWinner(scoreboard);
 
-            result.WeekNumber.Should().Be(weekNumber);
+            result.WeekNumber.Should().Be(scoreboard.WeekNumber);
             result.AwardId.Should().Be(AwardIds.MostPointsAward);
             var winningFantasyTeam = fantasyMatchups.Single(x => x.Winner.TotalStarterScore == winningTeamScore).Winner.FantasyTeam;
             result.AwardText.Should().Be($"Most Points Scored by {winningFantasyTeam.TeamName} with {winningTeamScore} points.");

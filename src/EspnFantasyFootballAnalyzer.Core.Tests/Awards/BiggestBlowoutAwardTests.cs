@@ -18,10 +18,11 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var winnerScoreOfBiggestBlowout = 90;
             fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(winnerScoreOfBiggestBlowout, 30));
             fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(20, 10));
+            var scoreboard = new FantasyWeekScoreboard(fantasyMatchups);
             var weekNumber = 11;
             var biggestBlowoutAward = new BiggestBlowoutAward();
 
-            var result = biggestBlowoutAward.AssignAwardToWinner(fantasyMatchups, weekNumber);
+            var result = biggestBlowoutAward.AssignAwardToWinner(scoreboard);
 
             result.WeekNumber.Should().Be(weekNumber);
             result.AwardId.Should().Be(AwardIds.BiggestBlowoutAward);

@@ -6,19 +6,18 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
 {
     public class MostPointsByAQbStarterAward : IAward
     {
-        public AwardWinner AssignAwardToWinner(List<FantasyMatchup> fantasyMatchups, int weekNumber)
+        public AwardWinner AssignAwardToWinner(FantasyWeekScoreboard fantasyWeekScoreboard)
         {
-            var winningQb = fantasyMatchups
-                .SelectMany(x => x.BothTeams)
-                .SelectMany(x => x.StarterStats)
+            var winningQb = fantasyWeekScoreboard
+                .StarterStats
                 .Where(x => x.FantasyPlayer.Position == FantasyPosition.Quarterback)
                 .OrderByDescending(x => x.Score)
                 .First();
 
-            var winningTeam = fantasyMatchups
-                .SelectMany(x => x.BothTeams)
+            var winningTeam = fantasyWeekScoreboard
+                .AllTeams
                 .Single(x => x.StarterStats
-                                                .Any(x => x.FantasyPlayer.Id 
+                                                .Any(y => y.FantasyPlayer.Id 
                                                           == winningQb.FantasyPlayer.Id))
                 .FantasyTeam;
 
@@ -27,7 +26,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 AwardId = AwardIds.MostPointsByAQbStarterAward,
                 AwardText = $"Most Points By A QB Starter {winningQb.FantasyPlayer.FullName} with {winningQb.Score} points from team {winningTeam.TeamName}.",
                 FantasyTeam = winningTeam,
-                WeekNumber = weekNumber,
+                WeekNumber = fantasyWeekScoreboard.WeekNumber,
             };
         }
     }

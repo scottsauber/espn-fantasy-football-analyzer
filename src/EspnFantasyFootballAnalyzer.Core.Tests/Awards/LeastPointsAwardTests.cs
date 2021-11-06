@@ -19,10 +19,11 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(100, 50));
             fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(90, 40));
             fantasyMatchups.Add(FantasyFactory.CreateMatchupWithScores(20, leastPointsScore));
+            var scoreboard = new FantasyWeekScoreboard(fantasyMatchups);
             var weekNumber = 11;
             var leastPointsAward = new LeastPointsAward();
 
-            var result = leastPointsAward.AssignAwardToWinner(fantasyMatchups, weekNumber);
+            var result = leastPointsAward.AssignAwardToWinner(scoreboard);
 
             result.WeekNumber.Should().Be(weekNumber);
             result.AwardId.Should().Be(AwardIds.LeastPointsAward);
