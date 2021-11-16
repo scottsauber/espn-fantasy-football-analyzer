@@ -14,11 +14,11 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
             {
                 StarterStats = new List<FantasyPlayerWeekStats>
                 {
-                    new FantasyPlayerWeekStats()
+                    new()
                     {
                         Score = 25,
                     },
-                    new FantasyPlayerWeekStats()
+                    new()
                     {
                         Score = 35
                     }
@@ -35,11 +35,11 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
             {
                 BenchStats = new List<FantasyPlayerWeekStats>
                 {
-                    new FantasyPlayerWeekStats()
+                    new()
                     {
                         Score = 10,
                     },
-                    new FantasyPlayerWeekStats()
+                    new()
                     {
                         Score = 15
                     }
