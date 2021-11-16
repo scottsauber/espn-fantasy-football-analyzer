@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AutoFixture;
@@ -10,7 +11,7 @@ using Xunit;
 
 namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
 {
-    public class MostPointsByAPositionAwardTests<T> where T : MostPointsByAPositionAward, new()
+    public class MostPointsByAPositionAwardTests
     {
         private readonly Fixture _fixture;
 
@@ -19,10 +20,24 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             _fixture = new Fixture();
         }
         
-        [Fact]
-        public void ShouldReturnPositionWithMostPointsWhenAnotherPositionHasMostPointsAndBenchPositionHasMorePointsThanStarter()
+        public class AwardData : IEnumerable<object[]>
         {
-            var mostPointsByAPositionAward = new T();
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                yield return new object[] {
+                    new MostPointsByAQbStarterAward(),
+                };
+                yield return new object[] {
+                    new MostPointsByARbStarterAward(),
+                };
+            }
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        }
+        
+        [Theory]
+        [ClassData(typeof(AwardData))]
+        public void ShouldReturnPositionWithMostPointsWhenAnotherPositionHasMostPointsAndBenchPositionHasMorePointsThanStarter(MostPointsByAPositionAward mostPointsByAPositionAward)
+        {
             var fantasyMatchups = new List<FantasyMatchup>();
             var positionWithHighScore = FantasyFactory.CreatePlayerWithPosition(mostPointsByAPositionAward.FantasyPosition);
             var winningTeam = _fixture.Create<FantasyTeam>();
