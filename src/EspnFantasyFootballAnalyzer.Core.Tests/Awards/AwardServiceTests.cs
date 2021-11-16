@@ -84,5 +84,16 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAQbStarterAward);
             biggestBlowoutAward.AwardText.Should().Be("Most Points By A QB Starter Josh Allen with 37.22 points from team Broadway St Hootinannies .");
         }
+        
+        [Fact]
+        public async Task ShouldReturnCorrectMostPointsByARbStarterAward()
+        {
+            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
+
+            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+
+            var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByARbStarterAward);
+            biggestBlowoutAward.AwardText.Should().Be("Most Points By A RB Starter Najee Harris with 28.2 points from team Sam's Town Killers.");
+        }
     }
 }
