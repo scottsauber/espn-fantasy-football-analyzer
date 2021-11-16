@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using EspnFantasyFootballAnalyzer.Core.Enums;
+using EspnFantasyFootballAnalyzer.Core.Extensions;
 using EspnFantasyFootballAnalyzer.Core.Models;
 
 namespace EspnFantasyFootballAnalyzer.Core.EspnData
@@ -69,7 +70,7 @@ namespace EspnFantasyFootballAnalyzer.Core.EspnData
         {
             return new()
             {
-                Score = e.PlayerPoolEntry.AppliedStatTotal,
+                Score = e.PlayerPoolEntry.AppliedStatTotal.TruncateAfterTwoDecimalPlaces(),
                 FantasyPlayer = MapFantasyPlayer(e),
             };
         }
