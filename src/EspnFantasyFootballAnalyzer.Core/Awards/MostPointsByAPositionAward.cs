@@ -11,7 +11,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
         public abstract string FantasyPositionTitle { get; }
         public AwardWinner AssignAwardToWinner(FantasyWeekScoreboard fantasyWeekScoreboard)
         {
-            var winningPosiiton = fantasyWeekScoreboard
+            var winningPosition = fantasyWeekScoreboard
                 .StarterStats
                 .Where(x => x.FantasyPlayer.Position == FantasyPosition)
                 .OrderByDescending(x => x.Score)
@@ -21,13 +21,13 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 .AllTeams
                 .Single(x => x.StarterStats
                     .Any(y => y.FantasyPlayer.Id 
-                              == winningPosiiton.FantasyPlayer.Id))
+                              == winningPosition.FantasyPlayer.Id))
                 .FantasyTeam;
 
             return new AwardWinner
             {
                 AwardId = AwardId,
-                AwardText = $"Most Points By A {FantasyPositionTitle} Starter {winningPosiiton.FantasyPlayer.FullName} with {winningPosiiton.Score} points from team {winningTeam.TeamName}.",
+                AwardText = $"Most Points By A {FantasyPositionTitle} Starter {winningPosition.FantasyPlayer.FullName} with {winningPosition.Score} points from team {winningTeam.TeamName}.",
                 FantasyTeam = winningTeam,
                 WeekNumber = fantasyWeekScoreboard.WeekNumber,
             };
