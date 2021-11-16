@@ -71,7 +71,18 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.SmallestMarginOfVictoryAward);
-            biggestBlowoutAward.AwardText.Should().Be($"Smallest Margin of Victory Award goes to Wanta Fant-a? !? for beating Pullen My Pickle by 2.48 points.");
+            biggestBlowoutAward.AwardText.Should().Be("Smallest Margin of Victory Award goes to Wanta Fant-a? !? for beating Pullen My Pickle by 2.48 points.");
+        }
+        
+        [Fact]
+        public async Task ShouldReturnCorrectMostPointsByAQbStarterAward()
+        {
+            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
+
+            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+
+            var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAQbStarterAward);
+            biggestBlowoutAward.AwardText.Should().Be("Most Points By A QB Starter Josh Allen with 37.22 points from team Broadway St Hootinannies .");
         }
     }
 }
