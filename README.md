@@ -13,7 +13,7 @@ Some ideas of weekly awards to generate (roughly in order of easiest to hardest)
 - Worst Manager (Highest % points on bench vs starting)
 - Overachiever (highest over projection)
 - Underachiever (most below projection)
-- Starting Positions of the week (QB✔️/RB/WR/TE/DEF)
+- Starting Positions of the week (QB✔️/RB✔️/WR/TE/DEF)
 - Bench Positions of the week (QB/RB/WR/TE/DEF)
 - Worst decision of the week
 
