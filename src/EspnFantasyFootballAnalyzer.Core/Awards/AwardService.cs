@@ -30,17 +30,15 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 new MostPointsAward(),
                 new LeastPointsAward(),
                 new BiggestBlowoutAward(),
+                new SmallestMarginOfVictoryAward(),
             };
 
             var requestUri = $"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/902814?scoringPeriodId={weekNumber}&view=modular&view=mScoreboard";
             var root = await _httpClient.GetFromJsonAsync<Root>(requestUri);
 
-            var fantasyMatchups = _espnDataMapperService.Map(root, weekNumber)
-                .FantasyMatchups
-                .Where(x => x.WeekNumber == weekNumber)
-                .ToList();
-            
-            return awards.Select(x => x.AssignAwardToWinner(fantasyMatchups, weekNumber)).ToList();
+            var scoreboard = _espnDataMapperService.Map(root, weekNumber);
+
+            return awards.Select(x => x.AssignAwardToWinner(scoreboard)).ToList();
         }
     }
 }

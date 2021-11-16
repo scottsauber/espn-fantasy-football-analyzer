@@ -60,7 +60,18 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.BiggestBlowoutAward);
-            biggestBlowoutAward.AwardText.Should().Be($"Biggest Blowout Award goes to Azeroth High Warlord for beating Team X-Bladz by 49.00 points.");
+            biggestBlowoutAward.AwardText.Should().Be("Biggest Blowout Award goes to Azeroth High Warlord for beating Team X-Bladz by 49.00 points.");
+        }
+        
+        [Fact]
+        public async Task ShouldReturnCorrectSmallestMarginOfVictoryTeam()
+        {
+            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
+
+            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+
+            var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.SmallestMarginOfVictoryAward);
+            biggestBlowoutAward.AwardText.Should().Be($"Smallest Margin of Victory Award goes to Wanta Fant-a? !? for beating Pullen My Pickle by 2.48 points.");
         }
     }
 }
