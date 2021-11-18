@@ -82,7 +82,7 @@ namespace EspnFantasyFootballAnalyzer.Core.EspnData
                 Id = e.PlayerPoolEntry.Player.Id,
                 FirstName = e.PlayerPoolEntry.Player.FirstName,
                 LastName = e.PlayerPoolEntry.Player.LastName,
-                Position = (FantasyPosition) e.PlayerPoolEntry.Player.DefaultPositionId
+                Position = FantasyPosition.All.First(x => x.PositionId == e.PlayerPoolEntry.Player.DefaultPositionId)
             };
         }
     }

@@ -7,6 +7,5 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
     {
         public override Guid AwardId => AwardIds.MostPointsByAQbStarterAward;
         public override FantasyPosition FantasyPosition => FantasyPosition.Quarterback;
-        public override string FantasyPositionTitle => "QB";
     }
 }

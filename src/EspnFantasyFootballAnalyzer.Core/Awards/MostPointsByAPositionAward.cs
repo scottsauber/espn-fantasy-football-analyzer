@@ -8,7 +8,6 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
     {
         public abstract Guid AwardId { get; }
         public abstract FantasyPosition FantasyPosition { get; }
-        public abstract string FantasyPositionTitle { get; }
         public AwardWinner AssignAwardToWinner(FantasyWeekScoreboard fantasyWeekScoreboard)
         {
             var winningPosition = fantasyWeekScoreboard
@@ -27,7 +26,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             return new AwardWinner
             {
                 AwardId = AwardId,
-                AwardText = $"Most Points By A {FantasyPositionTitle} Starter {winningPosition.FantasyPlayer.FullName} with {winningPosition.Score} points from team {winningTeam.TeamName}.",
+                AwardText = $"Most Points By A {FantasyPosition.PositionName} Starter {winningPosition.FantasyPlayer.FullName} with {winningPosition.Score} points from team {winningTeam.TeamName}.",
                 FantasyTeam = winningTeam,
                 WeekNumber = fantasyWeekScoreboard.WeekNumber,
             };

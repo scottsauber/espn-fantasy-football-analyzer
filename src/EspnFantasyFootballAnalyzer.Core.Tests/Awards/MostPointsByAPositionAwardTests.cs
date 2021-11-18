@@ -45,8 +45,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var matchupWithHighOtherPositionScore = FantasyFactory.CreateMatchupWithScores(winningPositionScore, 19, winningTeam, positionWithHighScore);
             matchupWithHighOtherPositionScore.HomeTeam.BenchStats = CreateBenchPositionWithHigherScore(winningPositionScore, mostPointsByAPositionAward.FantasyPosition);
             fantasyMatchups.Add(matchupWithHighOtherPositionScore);
-            var anotherPosition = Enum.GetValues<FantasyPosition>()
-                .First(x => x != mostPointsByAPositionAward.FantasyPosition);
+            var anotherPosition = FantasyPosition.All.First(x => x != mostPointsByAPositionAward.FantasyPosition);
             var otherMatchup = CreateMatchupWithLowerPositionScoreAndHigherScoreForAnotherPosition(winningPositionScore, mostPointsByAPositionAward.FantasyPosition, anotherPosition);
             fantasyMatchups.Add(otherMatchup);
             var scoreboard = new FantasyWeekScoreboard(fantasyMatchups);
@@ -60,7 +59,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
                 .SelectMany(x => x.BothTeams)
                 .SelectMany(x => x.StarterStats)
                 .Single(x => x.FantasyPlayer.Id == positionWithHighScore.Id);
-            result.AwardText.Should().Be($"Most Points By A {mostPointsByAPositionAward.FantasyPositionTitle} Starter {winningPosition.FantasyPlayer.FullName} with 20 points from team {winningTeam.TeamName}.");
+            result.AwardText.Should().Be($"Most Points By A {mostPointsByAPositionAward.FantasyPosition.PositionName} Starter {winningPosition.FantasyPlayer.FullName} with 20 points from team {winningTeam.TeamName}.");
             result.FantasyTeam.Should().Be(winningTeam);
         }
 

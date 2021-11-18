@@ -7,6 +7,5 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
     {
         public override Guid AwardId => AwardIds.MostPointsByARbStarterAward;
         public override FantasyPosition FantasyPosition => FantasyPosition.RunningBack;
-        public override string FantasyPositionTitle => "RB";
     }
 }

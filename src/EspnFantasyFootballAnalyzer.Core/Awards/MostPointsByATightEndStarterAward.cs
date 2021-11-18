@@ -7,6 +7,5 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
     {
         public override Guid AwardId => AwardIds.MostPointsByATightEndStarterAward;
         public override FantasyPosition FantasyPosition => FantasyPosition.TightEnd;
-        public override string FantasyPositionTitle => "TE";
     }
 }

@@ -82,7 +82,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAQbStarterAward);
-            biggestBlowoutAward.AwardText.Should().Be("Most Points By A QB Starter Josh Allen with 37.22 points from team Broadway St Hootinannies .");
+            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Quarterback Starter Josh Allen with 37.22 points from team Broadway St Hootinannies .");
         }
         
         [Fact]
@@ -93,7 +93,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByARbStarterAward);
-            biggestBlowoutAward.AwardText.Should().Be("Most Points By A RB Starter Najee Harris with 28.2 points from team Sam's Town Killers.");
+            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Running Back Starter Najee Harris with 28.2 points from team Sam's Town Killers.");
         }
         
         [Fact]
@@ -104,7 +104,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByATightEndStarterAward);
-            biggestBlowoutAward.AwardText.Should().Be("Most Points By A TE Starter Travis Kelce with 17.4 points from team Purdy Bad.");
+            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Tight End Starter Travis Kelce with 17.4 points from team Purdy Bad.");
         }
     }
 }

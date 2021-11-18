@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoFixture;
 using EspnFantasyFootballAnalyzer.Core.Enums;
 using EspnFantasyFootballAnalyzer.Core.EspnData;
 using EspnFantasyFootballAnalyzer.Core.Models;
+using EspnFantasyFootballAnalyzer.Core.Tests.Helpers;
 using FluentAssertions;
 using Xunit;
 
@@ -69,7 +71,8 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.EspnData
             var expectedStarterScore = _fixture.Create<decimal>();
             var root = CreateRoot(lineupSlot);
             var entries = new List<Entry>();
-            var player = _fixture.Create<Player>();
+            var player = CreatePlayer();
+            player.DefaultPositionId = FantasyPosition.Quarterback.PositionId;
             entries.Add(CreateEntriesForTeam(expectedStarterScore, lineupSlot, player));
             entries.Add(CreateEntriesForTeam(expectedStarterScore, LineupSlot.Bench, player));
             root.Schedule.Single().Home.RosterForMatchupPeriod.Entries = entries;
@@ -91,7 +94,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.EspnData
             var expectedStarterScore = _fixture.Create<decimal>();
             var root = CreateRoot();
             var entries = new List<Entry>();
-            var player = _fixture.Create<Player>();
+            var player = CreatePlayer();
             entries.Add(CreateEntriesForTeam(expectedStarterScore, lineupSlot, player));
             entries.Add(CreateEntriesForTeam(expectedStarterScore, LineupSlot.Bench, player));
             root.Schedule.Single().Away.RosterForMatchupPeriod.Entries = entries;
@@ -112,8 +115,8 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.EspnData
         {
             var root = CreateRoot();
             var expectedStarterScore = _fixture.Create<int>();
-            var player = _fixture.Create<Player>();
-            player.DefaultPositionId = (int) FantasyPosition.Quarterback;
+            var player = CreatePlayer();
+            player.DefaultPositionId = FantasyPosition.Quarterback.PositionId;
             var entries = new List<Entry>
             {
                 CreateEntriesForTeam(expectedStarterScore, lineupSlot, player),
@@ -135,8 +138,8 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.EspnData
         {
             var root = CreateRoot();
             var expectedStarterScore = _fixture.Create<int>();
-            var player = _fixture.Create<Player>();
-            player.DefaultPositionId = (int) FantasyPosition.Quarterback;
+            var player = CreatePlayer();
+            player.DefaultPositionId = FantasyPosition.Quarterback.PositionId;
             var entries = new List<Entry>
             {
                 CreateEntriesForTeam(expectedStarterScore, LineupSlot.Bench, player),
@@ -250,7 +253,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.EspnData
             {
                 FirstName = firstName,
                 LastName = lastName,
-                DefaultPositionId = (int) fantasyPosition,
+                DefaultPositionId = fantasyPosition.PositionId,
             };
         }
 
@@ -265,6 +268,15 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.EspnData
                 },
                 LineupSlotId = (int) lineupSlot,
             };
+        }
+
+        private Player CreatePlayer()
+        {
+            var player = _fixture.Create<Player>();
+            // Give a real random position Id... this is why I hate random data... it generates you scenarios that can't happen
+            var positionIds = FantasyPosition.All.Select(x => x.PositionId).ToList();
+            player.DefaultPositionId = positionIds.ElementAt(new Random().Next(positionIds.Count));
+            return player;
         }
     }
 }
