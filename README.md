@@ -2,6 +2,8 @@
 
 Purpose is to create a weekly "awards" of an ESPN league I have with some friends.
 
+Also using this to experiment with different libraries and approaches. Namely... I hate random test data, but everyone seems to do it so I'm going to use it on this to either help me confirm my hate or not. So far it's only confirmed my hate. Likely will end up ripping it all out so I can see a diff.
+
 Some ideas of weekly awards to generate (roughly in order of easiest to hardest):
 
 - Highest Scorer ✔️
@@ -13,7 +15,7 @@ Some ideas of weekly awards to generate (roughly in order of easiest to hardest)
 - Worst Manager (Highest % points on bench vs starting)
 - Overachiever (highest over projection)
 - Underachiever (most below projection)
-- Starting Positions of the week (QB✔️/RB✔️/WR/TE/DEF)
+- Starting Positions of the week (QB✔️/RB✔️/WR✔️/TE✔️/DEF)
 - Bench Positions of the week (QB/RB/WR/TE/DEF)
 - Worst decision of the week
 
