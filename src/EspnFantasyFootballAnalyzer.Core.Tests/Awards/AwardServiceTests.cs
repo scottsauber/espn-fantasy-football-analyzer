@@ -106,5 +106,16 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByATightEndStarterAward);
             biggestBlowoutAward.AwardText.Should().Be("Most Points By A Tight End Starter Travis Kelce with 17.4 points from team Purdy Bad.");
         }
+        
+        [Fact]
+        public async Task ShouldReturnCorrectMostPointsByADefenseSpecialTeamsStarterAward()
+        {
+            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
+
+            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+
+            var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByADefenseSpecialTeamsAward);
+            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Defense/Special Teams Starter Saints D/ST with 19 points from team Wanta Fant-a? !?.");
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
         public static Guid MostPointsByAQbStarterAward => new("D6EAEA81-095D-4C9A-8C92-7450CF87B5D6");
         public static Guid MostPointsByARbStarterAward => new("F8CD7543-49BC-4661-828C-A0FC4EDCA6DF");
         public static Guid MostPointsByATightEndStarterAward => new("6C3943EB-74F9-4DFD-94AB-FDF89BFE4386");
+        public static Guid MostPointsByADefenseSpecialTeamsAward => new("CA82D287-C898-429E-B63C-BF31F9849623");
     }
 }
