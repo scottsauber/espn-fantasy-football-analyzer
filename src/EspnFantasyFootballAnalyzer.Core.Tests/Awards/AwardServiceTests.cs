@@ -97,6 +97,17 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         }
         
         [Fact]
+        public async Task ShouldReturnCorrectMostPointsByAWideReceiverStarterAward()
+        {
+            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
+
+            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+
+            var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAWrStarterAward);
+            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Wide Receiver Starter Mike Williams with 33.2 points from team Taco Bell.");
+        }
+        
+        [Fact]
         public async Task ShouldReturnCorrectMostPointsByATightEndStarterAward()
         {
             var awardService = new AwardService(new EspnDataMapperService(), _httpClient);

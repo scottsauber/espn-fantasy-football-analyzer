@@ -26,6 +26,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             {
                 yield return new object[] { new MostPointsByAQbStarterAward() };
                 yield return new object[] { new MostPointsByARbStarterAward() };
+                yield return new object[] { new MostPointsByAWrStarterAward() };
                 yield return new object[] { new MostPointsByATightEndStarterAward() };
                 yield return new object[] { new MostPointsByADefenseSpecialTeamsStarterAward() };
             }

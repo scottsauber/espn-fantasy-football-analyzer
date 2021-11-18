@@ -33,6 +33,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 new SmallestMarginOfVictoryAward(),
                 new MostPointsByAQbStarterAward(),
                 new MostPointsByARbStarterAward(),
+                new MostPointsByAWrStarterAward(),
                 new MostPointsByATightEndStarterAward(),
                 new MostPointsByADefenseSpecialTeamsStarterAward(),
             };
