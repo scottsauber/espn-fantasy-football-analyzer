@@ -58,7 +58,7 @@ namespace EspnFantasyFootballAnalyzer.Core.EspnData
     {
         public List<Entry> Entries { get; set; }
     }
-    
+
 
     public class RosterForMatchupPeriodDelayed
     {

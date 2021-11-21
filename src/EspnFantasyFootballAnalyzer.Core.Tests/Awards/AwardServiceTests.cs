@@ -23,13 +23,14 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var mockMessageHandler = new Mock<HttpMessageHandler>();
             mockMessageHandler.Protected()
                 .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage {
+                .ReturnsAsync(new HttpResponseMessage
+                {
                     StatusCode = HttpStatusCode.OK,
                     Content = new StringContent(testJson)
                 });
             _httpClient = new HttpClient(mockMessageHandler.Object);
         }
-        
+
         [Fact]
         public async Task ShouldReturnCorrectMostPointsScoredTeam()
         {
@@ -40,7 +41,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var mostPointsAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsAward);
             mostPointsAward.AwardText.Should().Be("Most Points Scored by Waveland Woods Packers with 164.24 points.");
         }
-        
+
         [Fact]
         public async Task ShouldReturnCorrectLeastPointsScoreTeam()
         {
@@ -51,7 +52,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var mostPointsAward = awardWinners.Single(x => x.AwardId == AwardIds.LeastPointsAward);
             mostPointsAward.AwardText.Should().Be("Least Points Scored by Team X-Bladz with 61.42 points.");
         }
-        
+
         [Fact]
         public async Task ShouldReturnCorrectBlowoutTeam()
         {
@@ -62,7 +63,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.BiggestBlowoutAward);
             biggestBlowoutAward.AwardText.Should().Be("Biggest Blowout Award goes to Azeroth High Warlord for beating Team X-Bladz by 49.00 points.");
         }
-        
+
         [Fact]
         public async Task ShouldReturnCorrectSmallestMarginOfVictoryTeam()
         {
@@ -73,7 +74,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.SmallestMarginOfVictoryAward);
             biggestBlowoutAward.AwardText.Should().Be("Smallest Margin of Victory Award goes to Wanta Fant-a? !? for beating Pullen My Pickle by 2.48 points.");
         }
-        
+
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByAQbStarterAward()
         {
@@ -84,7 +85,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAQbStarterAward);
             biggestBlowoutAward.AwardText.Should().Be("Most Points By A Quarterback Starter Josh Allen with 37.22 points from team Broadway St Hootinannies .");
         }
-        
+
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByARbStarterAward()
         {
@@ -95,7 +96,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByARbStarterAward);
             biggestBlowoutAward.AwardText.Should().Be("Most Points By A Running Back Starter Najee Harris with 28.2 points from team Sam's Town Killers.");
         }
-        
+
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByAWideReceiverStarterAward()
         {
@@ -106,7 +107,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAWrStarterAward);
             biggestBlowoutAward.AwardText.Should().Be("Most Points By A Wide Receiver Starter Mike Williams with 33.2 points from team Taco Bell.");
         }
-        
+
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByATightEndStarterAward()
         {
@@ -117,7 +118,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByATightEndStarterAward);
             biggestBlowoutAward.AwardText.Should().Be("Most Points By A Tight End Starter Travis Kelce with 17.4 points from team Purdy Bad.");
         }
-        
+
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByADefenseSpecialTeamsStarterAward()
         {

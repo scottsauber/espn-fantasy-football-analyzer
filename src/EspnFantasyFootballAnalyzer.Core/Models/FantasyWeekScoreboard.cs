@@ -9,7 +9,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Models
         {
             FantasyMatchups = fantasyMatchups;
         }
-        
+
         public List<FantasyMatchup> FantasyMatchups { get; init; } = new();
 
         public int WeekNumber => FantasyMatchups.First().WeekNumber;
@@ -17,7 +17,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Models
         public List<FantasyTeamWeekResult> AllTeams => FantasyMatchups
             .SelectMany(x => x.BothTeams)
             .ToList();
-        
+
         public List<FantasyPlayerWeekStats> StarterStats => AllTeams
             .SelectMany(x => x.StarterStats)
             .ToList();

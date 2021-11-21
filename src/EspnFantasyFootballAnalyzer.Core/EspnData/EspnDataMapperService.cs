@@ -53,15 +53,15 @@ namespace EspnFantasyFootballAnalyzer.Core.EspnData
         private List<FantasyPlayerWeekStats> MapStarters(RosterForMatchupPeriod rosterForMatchupPeriod)
         {
             return rosterForMatchupPeriod.Entries
-                .Where(e => e.LineupSlotId != (int) LineupSlot.Bench)
+                .Where(e => e.LineupSlotId != (int)LineupSlot.Bench)
                 .Select(MapFantasyPlayerWeekStats)
                 .ToList();
         }
-        
+
         private List<FantasyPlayerWeekStats> MapBenchWarmers(RosterForMatchupPeriod rosterForMatchupPeriod)
         {
             return rosterForMatchupPeriod.Entries
-                .Where(e => e.LineupSlotId == (int) LineupSlot.Bench)
+                .Where(e => e.LineupSlotId == (int)LineupSlot.Bench)
                 .Select(MapFantasyPlayerWeekStats)
                 .ToList();
         }

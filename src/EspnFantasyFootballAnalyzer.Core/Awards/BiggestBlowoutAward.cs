@@ -12,7 +12,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 .FantasyMatchups
                 .OrderByDescending(x => x.PointDifferential)
                 .First();
-            
+
             return new AwardWinner
             {
                 AwardId = AwardIds.BiggestBlowoutAward,

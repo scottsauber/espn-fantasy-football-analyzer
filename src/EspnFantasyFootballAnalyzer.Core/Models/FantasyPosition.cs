@@ -12,7 +12,11 @@ namespace EspnFantasyFootballAnalyzer.Core.Models
 
         public static List<FantasyPosition> All => new()
         {
-            Quarterback, RunningBack, WideReceiver, TightEnd, DefenseSpecialTeams
+            Quarterback,
+            RunningBack,
+            WideReceiver,
+            TightEnd,
+            DefenseSpecialTeams
         };
     }
 }

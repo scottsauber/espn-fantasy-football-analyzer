@@ -22,7 +22,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             _espnDataMapperService = espnDataMapperService;
             _httpClient = httpClient;
         }
-        
+
         public async Task<List<AwardWinner>> GetAwardWinnersForWeekAsync(int year, int weekNumber)
         {
             var awards = new List<IAward>

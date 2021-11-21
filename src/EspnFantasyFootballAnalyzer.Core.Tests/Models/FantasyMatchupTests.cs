@@ -14,7 +14,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
         {
             _fixture = new Fixture();
         }
-        
+
         [Fact]
         public void WinnerShouldReturnHomeTeamWhenHomeTeamHasMostStarterPoints()
         {
@@ -22,7 +22,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
 
             fantasyMatchup.Winner.Should().Be(fantasyMatchup.HomeTeam);
         }
-        
+
         [Fact]
         public void LoserShouldReturnAwayTeamWhenHomeTeamHasMostStarterPoints()
         {
@@ -30,7 +30,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
 
             fantasyMatchup.Loser.Should().Be(fantasyMatchup.AwayTeam);
         }
-        
+
         [Fact]
         public void WinnerShouldReturnHomeTeamWhenHomeAndAwayTeamHaveTiedStarterPointsButHomeTeamHasMoreBenchPoints()
         {
@@ -39,7 +39,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Models
 
             fantasyMatchup.Winner.Should().Be(fantasyMatchup.HomeTeam);
         }
-        
+
         [Fact]
         public void LoserShouldReturnAwayTeamWhenHomeAndAwayTeamHaveTiedStarterPointsButHomeTeamHasMoreBenchPoints()
         {

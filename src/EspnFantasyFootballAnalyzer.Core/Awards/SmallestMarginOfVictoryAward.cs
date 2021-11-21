@@ -12,7 +12,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 .FantasyMatchups
                 .OrderBy(x => x.PointDifferential)
                 .First();
-            
+
             return new AwardWinner
             {
                 AwardId = AwardIds.SmallestMarginOfVictoryAward,

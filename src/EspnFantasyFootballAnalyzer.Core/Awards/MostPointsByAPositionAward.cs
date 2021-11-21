@@ -19,7 +19,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             var winningTeam = fantasyWeekScoreboard
                 .AllTeams
                 .Single(x => x.StarterStats
-                    .Any(y => y.FantasyPlayer.Id 
+                    .Any(y => y.FantasyPlayer.Id
                               == winningPosition.FantasyPlayer.Id))
                 .FantasyTeam;
 

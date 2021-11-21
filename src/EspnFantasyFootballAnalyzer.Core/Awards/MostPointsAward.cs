@@ -15,7 +15,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 .First();
             var winningFantasyTeam = winningTeamResult
                 .FantasyTeam;
-            
+
             return new AwardWinner
             {
                 AwardId = AwardIds.MostPointsAward,

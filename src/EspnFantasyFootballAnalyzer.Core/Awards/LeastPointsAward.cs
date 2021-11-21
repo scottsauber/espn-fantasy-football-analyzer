@@ -15,7 +15,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 .First();
             var losingFantasyTeam = losingTeamResult
                 .FantasyTeam;
-            
+
             return new AwardWinner
             {
                 AwardId = AwardIds.LeastPointsAward,
