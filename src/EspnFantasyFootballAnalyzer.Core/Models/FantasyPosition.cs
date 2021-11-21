@@ -2,8 +2,17 @@
 
 namespace EspnFantasyFootballAnalyzer.Core.Models
 {
-    public record FantasyPosition(int PositionId, string PositionName)
+    public record FantasyPosition
     {
+        public int PositionId { get; }
+        public string PositionName { get; }
+
+        private FantasyPosition(int positionId, string positionName)
+        {
+            PositionId = positionId;
+            PositionName = positionName;
+        }
+        
         public static FantasyPosition Quarterback => new(1, "Quarterback");
         public static FantasyPosition RunningBack => new(2, "Running Back");
         public static FantasyPosition WideReceiver => new(3, "Wide Receiver");
