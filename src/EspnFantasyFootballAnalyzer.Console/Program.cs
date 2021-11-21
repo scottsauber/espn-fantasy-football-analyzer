@@ -4,10 +4,10 @@ using EspnFantasyFootballAnalyzer.Core.EspnData;
 try
 {
     Console.WriteLine("What year is this for?");
-    int.TryParse(Console.ReadLine(), out var year);
+    var year = Convert.ToInt32(Console.ReadLine());
 
     Console.WriteLine("What week is this for?");
-    int.TryParse(Console.ReadLine(), out var week);
+    var week = Convert.ToInt32(Console.ReadLine());
 
     var awardService = CreateAwardService();
 
