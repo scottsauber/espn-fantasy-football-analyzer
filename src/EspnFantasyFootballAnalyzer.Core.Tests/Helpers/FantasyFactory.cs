@@ -6,7 +6,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Helpers
 {
     public static class FantasyFactory
     {
-        public static FantasyMatchup CreateMatchupWithScores(int homeTeamScore, int awayTeamScore, FantasyTeam homeTeam = null, FantasyPlayer homeTeamPlayer = null)
+        public static FantasyMatchup CreateMatchupWithScores(int homeTeamScore, int awayTeamScore, FantasyTeam? homeTeam = null, FantasyPlayer? homeTeamPlayer = null)
         {
             return new FantasyMatchup
             {
@@ -28,7 +28,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Helpers
             };
         }
 
-        public static FantasyTeamWeekResult CreateTeamResult(int score, FantasyTeam fantasyTeam = null, FantasyPlayer fantasyPlayer = null)
+        private static FantasyTeamWeekResult CreateTeamResult(int score, FantasyTeam? fantasyTeam = null, FantasyPlayer? fantasyPlayer = null)
         {
             var fixture = new Fixture();
             return new FantasyTeamWeekResult
