@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EspnFantasyFootballAnalyzer.Core.Awards;
 using EspnFantasyFootballAnalyzer.Core.Models;
@@ -27,7 +28,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             result.WeekNumber.Should().Be(weekNumber);
             result.AwardId.Should().Be(AwardIds.BiggestBlowoutAward);
             var biggestBlowout = fantasyMatchups.Single(x => x.Winner.TotalStarterScore == winnerScoreOfBiggestBlowout);
-            result.AwardText.Should().Be($"Biggest Blowout Award goes to {biggestBlowout.Winner.FantasyTeam.TeamName} for beating {biggestBlowout.Loser.FantasyTeam.TeamName} by 60 points.");
+            result.AwardText.Should().Be($"[b]Biggest Blowout[/b]{Environment.NewLine}{biggestBlowout.Winner.FantasyTeam.TeamName} for beating {biggestBlowout.Loser.FantasyTeam.TeamName} by 60 points.");
             result.FantasyTeam.Should().Be(biggestBlowout.Winner.FantasyTeam);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoFixture;
 using EspnFantasyFootballAnalyzer.Core.Awards;
@@ -28,7 +29,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             result.WeekNumber.Should().Be(weekNumber);
             result.AwardId.Should().Be(AwardIds.LeastPointsAward);
             var losingFantasyTeam = fantasyMatchups.Single(x => x.Loser.TotalStarterScore == leastPointsScore).Loser.FantasyTeam;
-            result.AwardText.Should().Be($"Least Points Scored by {losingFantasyTeam.TeamName} with {leastPointsScore} points.");
+            result.AwardText.Should().Be($"[b]Least Points Scored[/b]{Environment.NewLine}{losingFantasyTeam.TeamName} with {leastPointsScore} points.");
             result.FantasyTeam.Should().Be(losingFantasyTeam);
         }
     }

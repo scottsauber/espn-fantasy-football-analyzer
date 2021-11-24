@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EspnFantasyFootballAnalyzer.Core.Models;
 
@@ -19,7 +20,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             return new AwardWinner
             {
                 AwardId = AwardIds.LeastPointsAward,
-                AwardText = $"Least Points Scored by {losingFantasyTeam.TeamName} with {losingTeamResult.TotalStarterScore} points.",
+                AwardText = $"[b]Least Points Scored[/b]{Environment.NewLine}{losingFantasyTeam.TeamName} with {losingTeamResult.TotalStarterScore} points.",
                 WeekNumber = fantasyWeekScoreboard.WeekNumber,
                 FantasyTeam = losingFantasyTeam,
             };

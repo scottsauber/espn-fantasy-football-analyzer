@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -39,7 +40,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var mostPointsAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsAward);
-            mostPointsAward.AwardText.Should().Be("Most Points Scored by Waveland Woods Packers with 164.24 points.");
+            mostPointsAward.AwardText.Should().Be($"[b]Most Points Scored[/b]{Environment.NewLine}Waveland Woods Packers with 164.24 points.");
         }
 
         [Fact]
@@ -50,7 +51,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var mostPointsAward = awardWinners.Single(x => x.AwardId == AwardIds.LeastPointsAward);
-            mostPointsAward.AwardText.Should().Be("Least Points Scored by Team X-Bladz with 61.42 points.");
+            mostPointsAward.AwardText.Should().Be($"[b]Least Points Scored[/b]{Environment.NewLine}Team X-Bladz with 61.42 points.");
         }
 
         [Fact]
@@ -61,7 +62,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.BiggestBlowoutAward);
-            biggestBlowoutAward.AwardText.Should().Be("Biggest Blowout Award goes to Azeroth High Warlord for beating Team X-Bladz by 49.00 points.");
+            biggestBlowoutAward.AwardText.Should().Be($"[b]Biggest Blowout[/b]{Environment.NewLine}Azeroth High Warlord for beating Team X-Bladz by 49.00 points.");
         }
 
         [Fact]
@@ -72,7 +73,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.SmallestMarginOfVictoryAward);
-            biggestBlowoutAward.AwardText.Should().Be("Smallest Margin of Victory Award goes to Wanta Fant-a? !? for beating Pullen My Pickle by 2.48 points.");
+            biggestBlowoutAward.AwardText.Should().Be($"[b]Smallest Margin of Victory[/b]{Environment.NewLine}Wanta Fant-a? !? for beating Pullen My Pickle by 2.48 points.");
         }
 
         [Fact]
@@ -83,7 +84,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAQbStarterAward);
-            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Quarterback Starter Josh Allen with 37.22 points from team Broadway St Hootinannies .");
+            biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Quarterback Starter[/b]{Environment.NewLine}Josh Allen with 37.22 points from team Broadway St Hootinannies .");
         }
 
         [Fact]
@@ -94,7 +95,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByARbStarterAward);
-            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Running Back Starter Najee Harris with 28.2 points from team Sam's Town Killers.");
+            biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Running Back Starter[/b]{Environment.NewLine}Najee Harris with 28.2 points from team Sam's Town Killers.");
         }
 
         [Fact]
@@ -105,7 +106,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAWrStarterAward);
-            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Wide Receiver Starter Mike Williams with 33.2 points from team Taco Bell.");
+            biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Wide Receiver Starter[/b]{Environment.NewLine}Mike Williams with 33.2 points from team Taco Bell.");
         }
 
         [Fact]
@@ -116,7 +117,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByATightEndStarterAward);
-            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Tight End Starter Travis Kelce with 17.4 points from team Purdy Bad.");
+            biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Tight End Starter[/b]{Environment.NewLine}Travis Kelce with 17.4 points from team Purdy Bad.");
         }
 
         [Fact]
@@ -127,7 +128,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByADefenseSpecialTeamsAward);
-            biggestBlowoutAward.AwardText.Should().Be("Most Points By A Defense/Special Teams Starter Saints D/ST with 19 points from team Wanta Fant-a? !?.");
+            biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Defense/Special Teams Starter[/b]{Environment.NewLine}Saints D/ST with 19 points from team Wanta Fant-a? !?.");
         }
     }
 }

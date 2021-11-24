@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EspnFantasyFootballAnalyzer.Core.Awards;
 using EspnFantasyFootballAnalyzer.Core.Models;
@@ -27,7 +28,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             result.WeekNumber.Should().Be(weekNumber);
             result.AwardId.Should().Be(AwardIds.SmallestMarginOfVictoryAward);
             var smallestMargin = fantasyMatchups.Single(x => x.Winner.TotalStarterScore == winnerScoreOfSmallestMargin);
-            result.AwardText.Should().Be($"Smallest Margin of Victory Award goes to {smallestMargin.Winner.FantasyTeam.TeamName} for beating {smallestMargin.Loser.FantasyTeam.TeamName} by 10 points.");
+            result.AwardText.Should().Be($"[b]Smallest Margin of Victory[/b]{Environment.NewLine}{smallestMargin.Winner.FantasyTeam.TeamName} for beating {smallestMargin.Loser.FantasyTeam.TeamName} by 10 points.");
             result.FantasyTeam.Should().Be(smallestMargin.Winner.FantasyTeam);
         }
 

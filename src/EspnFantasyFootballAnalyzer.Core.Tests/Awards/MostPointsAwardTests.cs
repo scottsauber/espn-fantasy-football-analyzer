@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EspnFantasyFootballAnalyzer.Core.Awards;
 using EspnFantasyFootballAnalyzer.Core.Models;
@@ -25,7 +26,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
             result.WeekNumber.Should().Be(scoreboard.WeekNumber);
             result.AwardId.Should().Be(AwardIds.MostPointsAward);
             var winningFantasyTeam = fantasyMatchups.Single(x => x.Winner.TotalStarterScore == winningTeamScore).Winner.FantasyTeam;
-            result.AwardText.Should().Be($"Most Points Scored by {winningFantasyTeam.TeamName} with {winningTeamScore} points.");
+            result.AwardText.Should().Be($"[b]Most Points Scored[/b]{Environment.NewLine}{winningFantasyTeam.TeamName} with {winningTeamScore} points.");
             result.FantasyTeam.Should().Be(winningFantasyTeam);
         }
     }

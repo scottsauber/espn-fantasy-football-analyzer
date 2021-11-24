@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using EspnFantasyFootballAnalyzer.Core.Models;
 
@@ -16,7 +16,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             return new AwardWinner
             {
                 AwardId = AwardIds.SmallestMarginOfVictoryAward,
-                AwardText = $"Smallest Margin of Victory Award goes to {smallestMargin.Winner.FantasyTeam.TeamName} for beating {smallestMargin.Loser.FantasyTeam.TeamName} by {smallestMargin.PointDifferential} points.",
+                AwardText = $"[b]Smallest Margin of Victory[/b]{Environment.NewLine}{smallestMargin.Winner.FantasyTeam.TeamName} for beating {smallestMargin.Loser.FantasyTeam.TeamName} by {smallestMargin.PointDifferential} points.",
                 FantasyTeam = smallestMargin.Winner.FantasyTeam,
                 WeekNumber = fantasyWeekScoreboard.WeekNumber,
             };

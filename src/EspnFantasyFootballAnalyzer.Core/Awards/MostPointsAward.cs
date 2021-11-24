@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EspnFantasyFootballAnalyzer.Core.Models;
 
@@ -19,7 +20,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             return new AwardWinner
             {
                 AwardId = AwardIds.MostPointsAward,
-                AwardText = $"Most Points Scored by {winningFantasyTeam.TeamName} with {winningTeamResult.TotalStarterScore} points.",
+                AwardText = $"[b]Most Points Scored[/b]{Environment.NewLine}{winningFantasyTeam.TeamName} with {winningTeamResult.TotalStarterScore} points.",
                 WeekNumber = fantasyWeekScoreboard.WeekNumber,
                 FantasyTeam = winningFantasyTeam,
             };

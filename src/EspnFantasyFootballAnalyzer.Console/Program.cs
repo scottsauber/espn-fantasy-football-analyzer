@@ -13,7 +13,7 @@ try
 
     var winners = await awardService.GetAwardWinnersForWeekAsync(year, week);
 
-    var output = string.Join(Environment.NewLine, winners.Select(x => x.AwardText));
+    var output = string.Join(Environment.NewLine + Environment.NewLine, winners.Select(x => x.AwardText));
     Console.WriteLine(output);
 }
 catch (Exception ex)

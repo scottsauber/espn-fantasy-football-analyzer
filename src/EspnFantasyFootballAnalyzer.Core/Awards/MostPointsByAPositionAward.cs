@@ -26,7 +26,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
             return new AwardWinner
             {
                 AwardId = AwardId,
-                AwardText = $"Most Points By A {FantasyPosition.PositionName} Starter {winningPosition.FantasyPlayer.FullName} with {winningPosition.Score} points from team {winningTeam.TeamName}.",
+                AwardText = $"[b]Most Points By A {FantasyPosition.PositionName} Starter[/b]{Environment.NewLine}{winningPosition.FantasyPlayer.FullName} with {winningPosition.Score} points from team {winningTeam.TeamName}.",
                 FantasyTeam = winningTeam,
                 WeekNumber = fantasyWeekScoreboard.WeekNumber,
             };
