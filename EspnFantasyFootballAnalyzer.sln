@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EspnFantasyFootballAnalyzer.Core", "EspnFantasyFootballAnalyzer.Core\EspnFantasyFootballAnalyzer.Core.csproj", "{7EBA5AB8-BCB6-4DA7-9DB7-48B9AD6491B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EspnFantasyFootballAnalyzer.Core", "src\EspnFantasyFootballAnalyzer.Core\EspnFantasyFootballAnalyzer.Core.csproj", "{7EBA5AB8-BCB6-4DA7-9DB7-48B9AD6491B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EspnFantasyFootballAnalyzer.Core.Tests", "EspnFantasyFootballAnalyzer.Core.Tests\EspnFantasyFootballAnalyzer.Core.Tests.csproj", "{7384F72F-0281-4CEB-A5CB-7BB01AE32298}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EspnFantasyFootballAnalyzer.Core.Tests", "src\EspnFantasyFootballAnalyzer.Core.Tests\EspnFantasyFootballAnalyzer.Core.Tests.csproj", "{7384F72F-0281-4CEB-A5CB-7BB01AE32298}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EspnFantasyFootballAnalyzer.Console", "EspnFantasyFootballAnalyzer.Console\EspnFantasyFootballAnalyzer.Console.csproj", "{A8358083-FDFB-45CD-92D2-51E5A5C978AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EspnFantasyFootballAnalyzer.Console", "src\EspnFantasyFootballAnalyzer.Console\EspnFantasyFootballAnalyzer.Console.csproj", "{A8358083-FDFB-45CD-92D2-51E5A5C978AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
