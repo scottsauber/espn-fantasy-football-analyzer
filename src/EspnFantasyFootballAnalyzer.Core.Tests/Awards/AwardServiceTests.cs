@@ -17,6 +17,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
     public class AwardServiceTests
     {
         private readonly HttpClient _httpClient;
+        private readonly AwardService _awardService;
 
         public AwardServiceTests()
         {
@@ -30,14 +31,13 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
                     Content = new StringContent(testJson)
                 });
             _httpClient = new HttpClient(mockMessageHandler.Object);
+            _awardService = new AwardService(new EspnDataMapperService(), _httpClient);
         }
 
         [Fact]
         public async Task ShouldReturnCorrectMostPointsScoredTeam()
         {
-            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
-
-            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var mostPointsAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsAward);
             mostPointsAward.AwardText.Should().Be($"[b]Most Points Scored[/b]{Environment.NewLine}Waveland Woods Packers with 164.24 points.");
@@ -46,9 +46,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectLeastPointsScoreTeam()
         {
-            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
-
-            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var mostPointsAward = awardWinners.Single(x => x.AwardId == AwardIds.LeastPointsAward);
             mostPointsAward.AwardText.Should().Be($"[b]Least Points Scored[/b]{Environment.NewLine}Team X-Bladz with 61.42 points.");
@@ -57,9 +55,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectBlowoutTeam()
         {
-            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
-
-            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.BiggestBlowoutAward);
             biggestBlowoutAward.AwardText.Should().Be($"[b]Biggest Blowout[/b]{Environment.NewLine}Azeroth High Warlord for beating Team X-Bladz by 49.00 points.");
@@ -68,9 +64,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectSmallestMarginOfVictoryTeam()
         {
-            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
-
-            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.SmallestMarginOfVictoryAward);
             biggestBlowoutAward.AwardText.Should().Be($"[b]Smallest Margin of Victory[/b]{Environment.NewLine}Wanta Fant-a? !? for beating Pullen My Pickle by 2.48 points.");
@@ -79,9 +73,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByAQbStarterAward()
         {
-            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
-
-            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAQbStarterAward);
             biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Quarterback Starter[/b]{Environment.NewLine}Josh Allen with 37.22 points from team Broadway St Hootinannies .");
@@ -90,9 +82,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByARbStarterAward()
         {
-            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
-
-            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByARbStarterAward);
             biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Running Back Starter[/b]{Environment.NewLine}Najee Harris with 28.2 points from team Sam's Town Killers.");
@@ -101,9 +91,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByAWideReceiverStarterAward()
         {
-            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
-
-            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByAWrStarterAward);
             biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Wide Receiver Starter[/b]{Environment.NewLine}Mike Williams with 33.2 points from team Taco Bell.");
@@ -112,9 +100,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByATightEndStarterAward()
         {
-            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
-
-            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByATightEndStarterAward);
             biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Tight End Starter[/b]{Environment.NewLine}Travis Kelce with 17.4 points from team Purdy Bad.");
@@ -123,9 +109,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
         [Fact]
         public async Task ShouldReturnCorrectMostPointsByADefenseSpecialTeamsStarterAward()
         {
-            var awardService = new AwardService(new EspnDataMapperService(), _httpClient);
-
-            var awardWinners = await awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByADefenseSpecialTeamsAward);
             biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Defense/Special Teams Starter[/b]{Environment.NewLine}Saints D/ST with 19 points from team Wanta Fant-a? !?.");
