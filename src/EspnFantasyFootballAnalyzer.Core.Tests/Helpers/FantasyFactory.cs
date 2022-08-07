@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoFixture;
 using EspnFantasyFootballAnalyzer.Core.Models;
 
@@ -20,7 +21,10 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Helpers
         {
             var fixture = new Fixture();
 
-            var player = fixture.Create<FantasyPlayer>();
+            var player = fixture
+                .Build<FantasyPlayer>()
+                .With(x => x.Id, Random.Shared.Next(1, int.MaxValue))
+                .Create();
 
             return player with
             {
