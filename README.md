@@ -49,3 +49,9 @@ Need:
 Notes:
 
 - "Slots" to determine starter, can use React Components extension to see which slot is which
+
+## Usage
+
+1. Install .NET 6
+2. `cd src/EspnFantasyFootballAnalyzer.Console`
+3. `dotnet run`
