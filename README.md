@@ -4,23 +4,25 @@ Purpose is to create a weekly "awards" of an ESPN league I have with some friend
 
 Also using this to experiment with different libraries and approaches. Namely... I hate random test data, but everyone seems to do it so I'm going to use it on this to either help me confirm my hate or not. So far it's only confirmed my hate. Likely will end up ripping it all out so I can see a diff.
 
-Some ideas of weekly awards to generate (roughly in order of easiest to hardest):
+## Awards
+
+Completed awards:
 
 - Highest Scorer ✔️
 - Lowest Scorer ✔️
 - Biggest Blowout ✔️
 - Smallest victory ✔️
+- Starting Positions of the week (QB✔️/RB✔️/WR✔️/TE✔️/DEF✔️)
+
+Some ideas of other weekly awards, maybe TODO:
+
 - SNF/MNF Victory
 - Best Manager (Highest % points starting vs bench)
 - Worst Manager (Highest % points on bench vs starting)
 - Overachiever (highest over projection)
 - Underachiever (most below projection)
-- Starting Positions of the week (QB✔️/RB✔️/WR✔️/TE✔️/DEF✔️)
 - Bench Positions of the week (QB/RB/WR/TE/DEF)
 - Worst decision of the week
-
-Other ideas:
-
 - Lucky (how much below normal did opponent score)
 - Unlucky (how much above normal did opponent score)
 - Opponent Ranking Low/High
@@ -36,19 +38,9 @@ Season ending awards:
 - Biggest pre-season surprise
 - Biggest pre-season letdown
 
-API Examples:
+## API Examples:
 
 - Individual matchups - https://fantasy.espn.com/apis/v3/games/ffl/seasons/2021/segments/0/leagues/902814?view=mBoxscore&view=mMatchupScore&view=mRoster&view=mSettings&view=mStatus&view=mTeam&view=modular&view=mNav
-
-Need:
-
-- Parse schedule
-- Parse individual box scores
-- Compare against box scores of ^
-
-Notes:
-
-- "Slots" to determine starter, can use React Components extension to see which slot is which
 
 ## Usage
 
