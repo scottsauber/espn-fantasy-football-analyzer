@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using EspnFantasyFootballAnalyzer.Core.Awards;
+﻿using EspnFantasyFootballAnalyzer.Core.Awards;
 using EspnFantasyFootballAnalyzer.Core.Models;
 using EspnFantasyFootballAnalyzer.Core.Tests.Helpers;
 using FluentAssertions;

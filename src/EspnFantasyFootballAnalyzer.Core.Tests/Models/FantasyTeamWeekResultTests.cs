@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using EspnFantasyFootballAnalyzer.Core.Models;
+﻿using EspnFantasyFootballAnalyzer.Core.Models;
 using FluentAssertions;
 using Xunit;
 

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoFixture;
+﻿using AutoFixture;
 using EspnFantasyFootballAnalyzer.Core.Enums;
 using EspnFantasyFootballAnalyzer.Core.EspnData;
 using EspnFantasyFootballAnalyzer.Core.Models;
-using EspnFantasyFootballAnalyzer.Core.Tests.Helpers;
 using FluentAssertions;
 using Xunit;
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Net;
 using EspnFantasyFootballAnalyzer.Core.Awards;
 using EspnFantasyFootballAnalyzer.Core.EspnData;
 using FluentAssertions;

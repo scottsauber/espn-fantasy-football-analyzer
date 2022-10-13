@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoFixture;
+﻿using AutoFixture;
 using EspnFantasyFootballAnalyzer.Core.Models;
 
 namespace EspnFantasyFootballAnalyzer.Core.Tests.Helpers
