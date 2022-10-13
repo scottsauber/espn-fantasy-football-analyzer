@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EspnFantasyFootballAnalyzer.Core.Extensions
+﻿namespace EspnFantasyFootballAnalyzer.Core.Extensions
 {
     public static class DecimalExtensions
     {

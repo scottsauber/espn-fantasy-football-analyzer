@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using EspnFantasyFootballAnalyzer.Core.Models;
+﻿using EspnFantasyFootballAnalyzer.Core.Models;
 
 namespace EspnFantasyFootballAnalyzer.Core.Awards
 {

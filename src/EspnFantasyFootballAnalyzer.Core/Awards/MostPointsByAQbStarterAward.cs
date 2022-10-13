@@ -1,5 +1,4 @@
-﻿using System;
-using EspnFantasyFootballAnalyzer.Core.Models;
+﻿using EspnFantasyFootballAnalyzer.Core.Models;
 
 namespace EspnFantasyFootballAnalyzer.Core.Awards
 {

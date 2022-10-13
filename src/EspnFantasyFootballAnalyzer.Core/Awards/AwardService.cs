@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
+﻿using System.Net.Http.Json;
 using EspnFantasyFootballAnalyzer.Core.EspnData;
 
 namespace EspnFantasyFootballAnalyzer.Core.Awards
@@ -31,12 +27,12 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 new LeastPointsAward(),
                 new BiggestBlowoutAward(),
                 new SmallestMarginOfVictoryAward(),
+                new MostPointsInLossAward(),
                 new MostPointsByAQbStarterAward(),
                 new MostPointsByARbStarterAward(),
                 new MostPointsByAWrStarterAward(),
                 new MostPointsByATightEndStarterAward(),
                 new MostPointsByADefenseSpecialTeamsStarterAward(),
-                new MostPointsInLossAward(),
             };
 
             var requestUri = $"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/902814?scoringPeriodId={weekNumber}&view=modular&view=mScoreboard";

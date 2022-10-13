@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace EspnFantasyFootballAnalyzer.Core.Models
+﻿namespace EspnFantasyFootballAnalyzer.Core.Models
 {
     public record FantasyPosition
     {

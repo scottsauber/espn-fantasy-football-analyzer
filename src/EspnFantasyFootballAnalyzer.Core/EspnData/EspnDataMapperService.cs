@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using EspnFantasyFootballAnalyzer.Core.Enums;
+﻿using EspnFantasyFootballAnalyzer.Core.Enums;
 using EspnFantasyFootballAnalyzer.Core.Extensions;
 using EspnFantasyFootballAnalyzer.Core.Models;
 

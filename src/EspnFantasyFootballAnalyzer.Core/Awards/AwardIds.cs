@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EspnFantasyFootballAnalyzer.Core.Awards
+﻿namespace EspnFantasyFootballAnalyzer.Core.Awards
 {
     public static class AwardIds
     {

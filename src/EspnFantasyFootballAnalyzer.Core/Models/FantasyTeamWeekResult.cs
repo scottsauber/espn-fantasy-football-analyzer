@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace EspnFantasyFootballAnalyzer.Core.Models
+﻿namespace EspnFantasyFootballAnalyzer.Core.Models
 {
     public record FantasyTeamWeekResult
     {
