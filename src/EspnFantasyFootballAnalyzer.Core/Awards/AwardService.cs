@@ -36,6 +36,7 @@ namespace EspnFantasyFootballAnalyzer.Core.Awards
                 new MostPointsByAWrStarterAward(),
                 new MostPointsByATightEndStarterAward(),
                 new MostPointsByADefenseSpecialTeamsStarterAward(),
+                new MostPointsInLossAward(),
             };
 
             var requestUri = $"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/902814?scoringPeriodId={weekNumber}&view=modular&view=mScoreboard";

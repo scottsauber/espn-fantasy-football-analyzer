@@ -16,7 +16,6 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
 {
     public class AwardServiceTests
     {
-        private readonly HttpClient _httpClient;
         private readonly AwardService _awardService;
 
         public AwardServiceTests()
@@ -30,8 +29,8 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
                     StatusCode = HttpStatusCode.OK,
                     Content = new StringContent(testJson)
                 });
-            _httpClient = new HttpClient(mockMessageHandler.Object);
-            _awardService = new AwardService(new EspnDataMapperService(), _httpClient);
+            var httpClient = new HttpClient(mockMessageHandler.Object);
+            _awardService = new AwardService(new EspnDataMapperService(), httpClient);
         }
 
         [Fact]
@@ -113,6 +112,15 @@ namespace EspnFantasyFootballAnalyzer.Core.Tests.Awards
 
             var biggestBlowoutAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsByADefenseSpecialTeamsAward);
             biggestBlowoutAward.AwardText.Should().Be($"[b]Most Points By A Defense/Special Teams Starter[/b]{Environment.NewLine}Saints D/ST with 19 points from team Wanta Fant-a? !?.");
+        }
+
+        [Fact]
+        public async Task ShouldReturnCorrectMostPointsInLossAward()
+        {
+            var awardWinners = await _awardService.GetAwardWinnersForWeekAsync(2021, 3);
+            
+            var mostPointsInLossAward = awardWinners.Single(x => x.AwardId == AwardIds.MostPointsInLossAward);
+            mostPointsInLossAward.AwardText.Should().Be($"[b]Most Points In Loss[/b]{Environment.NewLine}Broadway St Hootinannies  for scoring 154.02 points in a loss.");
         }
     }
 }
