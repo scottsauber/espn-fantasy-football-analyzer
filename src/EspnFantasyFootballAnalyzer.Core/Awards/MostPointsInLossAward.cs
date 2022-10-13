@@ -16,7 +16,7 @@ public class MostPointsInLossAward : IAward
         return new AwardWinner
         {
             AwardId = AwardIds.MostPointsInLossAward,
-            AwardText = $"[b]Most Points In Loss[/b]${Environment.NewLine}{mostPointsInLoss.Loser.FantasyTeam.TeamName} for scoring {mostPointsInLoss.Loser.TotalStarterScore} points in a loss.",
+            AwardText = $"[b]Most Points In Loss[/b]{Environment.NewLine}{mostPointsInLoss.Loser.FantasyTeam.TeamName} for scoring {mostPointsInLoss.Loser.TotalStarterScore} points in a loss.",
             FantasyTeam = mostPointsInLoss.Loser.FantasyTeam,
             WeekNumber = fantasyWeekScoreboard.WeekNumber,
         };

@@ -29,7 +29,7 @@ public class MostPointsInLossAwardTests
         result.WeekNumber.Should().Be(scoreboard.WeekNumber);
         result.AwardId.Should().Be(AwardIds.MostPointsInLossAward);
         var mostPointsInLossAwardWinner = fantasyMatchups.Single(x => x.Loser.TotalStarterScore == mostPointsInLoss);
-        result.AwardText.Should().Be($"[b]Most Points In Loss[/b]${Environment.NewLine}{mostPointsInLossAwardWinner.Loser.FantasyTeam.TeamName} for scoring {mostPointsInLossAwardWinner.Loser.TotalStarterScore} points in a loss.");
+        result.AwardText.Should().Be($"[b]Most Points In Loss[/b]{Environment.NewLine}{mostPointsInLossAwardWinner.Loser.FantasyTeam.TeamName} for scoring {mostPointsInLossAwardWinner.Loser.TotalStarterScore} points in a loss.");
         result.FantasyTeam.Should().Be(mostPointsInLossAwardWinner.Loser.FantasyTeam);
     }
 }
