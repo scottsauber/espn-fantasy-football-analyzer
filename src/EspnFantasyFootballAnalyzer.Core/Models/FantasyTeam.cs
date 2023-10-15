@@ -1,8 +1,7 @@
-﻿namespace EspnFantasyFootballAnalyzer.Core.Models
+﻿namespace EspnFantasyFootballAnalyzer.Core.Models;
+
+public record FantasyTeam
 {
-    public record FantasyTeam
-    {
-        public int Id { get; init; }
-        public string TeamName { get; init; }
-    }
+    public int Id { get; init; }
+    public string TeamName { get; init; }
 }

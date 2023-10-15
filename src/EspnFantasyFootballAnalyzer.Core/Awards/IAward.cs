@@ -1,9 +1,8 @@
 ﻿using EspnFantasyFootballAnalyzer.Core.Models;
 
-namespace EspnFantasyFootballAnalyzer.Core.Awards
+namespace EspnFantasyFootballAnalyzer.Core.Awards;
+
+public interface IAward
 {
-    public interface IAward
-    {
-        AwardWinner AssignAwardToWinner(FantasyWeekScoreboard fantasyWeekScoreboard);
-    }
+    AwardWinner AssignAwardToWinner(FantasyWeekScoreboard fantasyWeekScoreboard);
 }

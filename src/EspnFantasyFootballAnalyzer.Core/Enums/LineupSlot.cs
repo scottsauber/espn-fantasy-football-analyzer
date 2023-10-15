@@ -1,13 +1,12 @@
-﻿namespace EspnFantasyFootballAnalyzer.Core.Enums
+﻿namespace EspnFantasyFootballAnalyzer.Core.Enums;
+
+public enum LineupSlot
 {
-    public enum LineupSlot
-    {
-        StartingQuarterback = 0,
-        StartingRunningBack = 2,
-        StartingWideReceiver = 4,
-        StartingTightEnd = 6,
-        StartingFlex = 23,
-        StartingDefenseSpecialTeams = 16,
-        Bench = 20,
-    }
+    StartingQuarterback = 0,
+    StartingRunningBack = 2,
+    StartingWideReceiver = 4,
+    StartingTightEnd = 6,
+    StartingFlex = 23,
+    StartingDefenseSpecialTeams = 16,
+    Bench = 20,
 }

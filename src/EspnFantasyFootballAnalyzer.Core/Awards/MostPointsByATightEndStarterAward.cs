@@ -1,10 +1,9 @@
 ﻿using EspnFantasyFootballAnalyzer.Core.Models;
 
-namespace EspnFantasyFootballAnalyzer.Core.Awards
+namespace EspnFantasyFootballAnalyzer.Core.Awards;
+
+public class MostPointsByATightEndStarterAward : MostPointsByAPositionAward
 {
-    public class MostPointsByATightEndStarterAward : MostPointsByAPositionAward
-    {
-        public override Guid AwardId => AwardIds.MostPointsByATightEndStarterAward;
-        public override FantasyPosition FantasyPosition => FantasyPosition.TightEnd;
-    }
+    public override Guid AwardId => AwardIds.MostPointsByATightEndStarterAward;
+    public override FantasyPosition FantasyPosition => FantasyPosition.TightEnd;
 }
