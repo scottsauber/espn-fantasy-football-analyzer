@@ -123,10 +123,9 @@ public class Team
     public int DraftDayProjectedRank { get; set; }
     public int Id { get; set; }
     public bool IsActive { get; set; }
-    public string Location { get; set; }
     public string Logo { get; set; }
     public string LogoType { get; set; }
-    public string Nickname { get; set; }
+    public string Name { get; set; }
     public List<string> Owners { get; set; }
     public int PlayoffSeed { get; set; }
     public decimal Points { get; set; }

@@ -15,6 +15,7 @@ try
 
     var output = string.Join(Environment.NewLine + Environment.NewLine, winners.Select(x => x.AwardText));
     Console.WriteLine(output);
+    TextCopy.ClipboardService.SetText(output);
 }
 catch (Exception ex)
 {

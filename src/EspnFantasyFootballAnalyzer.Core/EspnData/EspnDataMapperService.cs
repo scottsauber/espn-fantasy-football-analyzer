@@ -44,7 +44,7 @@ public class EspnDataMapperService : IEspnDataMapperService
         return new FantasyTeam
         {
             Id = team.Id,
-            TeamName = $"{team.Location} {team.Nickname}",
+            TeamName = team.Name,
         };
     }
 

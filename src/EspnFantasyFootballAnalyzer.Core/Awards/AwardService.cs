@@ -35,7 +35,8 @@ public class AwardService : IAwardService
             new MostPointsByADefenseSpecialTeamsStarterAward(),
         };
 
-        var requestUri = $"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/902814?scoringPeriodId={weekNumber}&view=modular&view=mScoreboard";
+        var requestUri = $"https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/902814?scoringPeriodId={weekNumber}&view=mBoxscore&view=mMatchupScore&view=mRoster&view=mSettings&view=mStatus&view=mTeam&view=modular&view=mNav";
+        // var requestUri = $"https://fantasy.espn.com/apis/v3/games/ffl/seasons/{year}/segments/0/leagues/902814?scoringPeriodId={weekNumber}&view=modular&view=mScoreboard";
         var root = await _httpClient.GetFromJsonAsync<Root>(requestUri);
 
         var scoreboard = _espnDataMapperService.Map(root, weekNumber);

@@ -36,13 +36,11 @@ public class EspnDataMapperServiceTests
         root.Teams.Clear();
         root.Schedule = new List<Schedule> { root.Schedule.First() };
         var homeTeam = _fixture.Create<Team>();
-        homeTeam.Location = "San Francisco";
-        homeTeam.Nickname = "49ers";
+        homeTeam.Name = "49ers";
         root.Teams.Add(homeTeam);
         root.Schedule[0].Home.TeamId = homeTeam.Id;
         var awayTeam = _fixture.Create<Team>();
-        awayTeam.Location = "Chicago";
-        awayTeam.Nickname = "Bears";
+        awayTeam.Name = "Bears";
         root.Teams.Add(awayTeam);
         root.Schedule[0].Away.TeamId = awayTeam.Id;
 
@@ -50,9 +48,9 @@ public class EspnDataMapperServiceTests
 
         var fantasyMatchup = result.FantasyMatchups.Single();
         fantasyMatchup.HomeTeam.FantasyTeam.Id.Should().Be(homeTeam.Id);
-        fantasyMatchup.HomeTeam.FantasyTeam.TeamName.Should().Be("San Francisco 49ers");
+        fantasyMatchup.HomeTeam.FantasyTeam.TeamName.Should().Be("49ers");
         fantasyMatchup.AwayTeam.FantasyTeam.Id.Should().Be(awayTeam.Id);
-        fantasyMatchup.AwayTeam.FantasyTeam.TeamName.Should().Be("Chicago Bears");
+        fantasyMatchup.AwayTeam.FantasyTeam.TeamName.Should().Be("Bears");
     }
 
     [Theory]
